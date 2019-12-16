@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- 分割线的宽度 -->
+    <dimen name="pt1_divider">1pt</dimen>
+    <dimen name="pt128_navigation">128pt</dimen>
+
+</resources>

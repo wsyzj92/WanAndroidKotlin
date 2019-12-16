@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <!-- 主要颜色 -->
+    <color name="colorPrimary">#ff5722</color>
+    <!-- 次要颜色 -->
+    <color name="colorPrimaryDark">#55ff5722</color>
+    <color name="colorAccent">#ff5722</color>
+    <!-- 字体的主要颜色 -->
+    <color name="colorPrimaryText">#333333</color>
+    <!-- 字体的次要颜色 -->
+    <color name="colorSecondaryText">#666666</color>
+    <!-- 字体的第三种颜色 -->
+    <color name="colorThirdText">#999999</color>
+    <!-- 提示字体的颜色 -->
+    <color name="colorHintText">#666666</color>
+    <!-- 分割线颜色 -->
+    <color name="colorDivider">#f2f2f2</color>
+    <!-- 背景颜色 -->
+    <color name="colorBackground">#f8f8f8</color>
+    <!-- 遮罩颜色 -->
+    <color name="colorShade">#54000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">@android:color/transparent</color>
+
+    <color name="colordddddd">#DDDDDD</color>
+
 </resources>

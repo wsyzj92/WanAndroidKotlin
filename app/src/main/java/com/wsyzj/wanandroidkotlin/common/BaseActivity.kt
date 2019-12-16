@@ -1,12 +1,17 @@
 package com.wsyzj.wanandroidkotlin.common
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.ButterKnife
+import com.blankj.utilcode.util.AdaptScreenUtils
 import com.wsyzj.wanandroidkotlin.R
+import com.wsyzj.wanandroidkotlin.common.widget.BaseNavigation
 
 /**
  * <pre>
@@ -17,7 +22,9 @@ import com.wsyzj.wanandroidkotlin.R
  *     version: 1.0
  * </pre>
  */
-abstract class BaseActivity : AppCompatActivity() {
+open abstract class BaseActivity : AppCompatActivity() {
+
+    protected var baseNavigation: BaseNavigation? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +35,20 @@ abstract class BaseActivity : AppCompatActivity() {
      * 初始化布局，包括 统一的标题栏，界面的状态布局，contentView布局
      */
     fun layout() {
-        val parent: ViewGroup = findViewById<ViewGroup>(android.R.id.content)
-        parent.removeAllViews()
+        var viewGroup: ViewGroup = findViewById<ViewGroup>(android.R.id.content)
+        viewGroup.removeAllViews()
+
+        var rootView: LinearLayout = LinearLayout(this)
+        rootView.orientation = LinearLayout.VERTICAL
+        viewGroup.addView(rootView)
+
+        // 导航栏
+        baseNavigation = BaseNavigation(this)
+        baseNavigation?.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        rootView.addView(baseNavigation)
 
         // contentView布局
         val contentView: View = View.inflate(this, contentView(), null)
@@ -37,8 +56,15 @@ abstract class BaseActivity : AppCompatActivity() {
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT
         )
-        parent.addView(contentView)
+        rootView.addView(contentView)
         ButterKnife.bind(this, contentView)
+    }
+
+    /**
+     * 屏幕适配 1080
+     */
+    override fun getResources(): Resources {
+        return AdaptScreenUtils.adaptWidth(super.getResources(), 1080)
     }
 
     /**

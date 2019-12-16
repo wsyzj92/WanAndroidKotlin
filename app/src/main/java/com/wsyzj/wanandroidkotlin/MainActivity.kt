@@ -1,7 +1,5 @@
 package com.wsyzj.wanandroidkotlin
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.wsyzj.wanandroidkotlin.common.BaseActivity
 
 /**
@@ -10,7 +8,7 @@ import com.wsyzj.wanandroidkotlin.common.BaseActivity
 class MainActivity : BaseActivity() {
 
     override fun contentView(): Int {
-        return R.layout.activity_main;
+        return R.layout.activity_main
     }
 
     override fun initView() {
@@ -20,5 +18,4 @@ class MainActivity : BaseActivity() {
     override fun initData() {
 
     }
-
 }
