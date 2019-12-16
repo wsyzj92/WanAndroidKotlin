@@ -2,11 +2,23 @@ package com.wsyzj.wanandroidkotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.wsyzj.wanandroidkotlin.common.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+/**
+ * 主界面
+ */
+class MainActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun contentView(): Int {
+        return R.layout.activity_main;
     }
+
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+
+    }
+
 }
