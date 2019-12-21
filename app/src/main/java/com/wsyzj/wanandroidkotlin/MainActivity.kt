@@ -1,21 +1,11 @@
 package com.wsyzj.wanandroidkotlin
 
-import com.wsyzj.wanandroidkotlin.common.BaseActivity
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * 主界面
  */
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
 
-    override fun contentView(): Int {
-        return R.layout.activity_main
-    }
 
-    override fun initView() {
-
-    }
-
-    override fun initData() {
-
-    }
 }

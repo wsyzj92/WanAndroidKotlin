@@ -1,14 +1,8 @@
 package com.wsyzj.wanandroidkotlin.common.mvp
 
 /**
- * <pre>
- *     author : 焦洋
- *     e-mail : wsyzj_92@163.com
- *     time   : 2019/12/13
- *     desc   :
- *     version: 1.0
- * </pre>
+ * @author: wsyzj
+ * @date: 2017-03-18 10:08
+ * @comment: MVP模式的模型(通常作为获取数据)
  */
-interface BaseIModel {
-
-}
+interface BaseIModel
