@@ -1,4 +1,4 @@
-package com.wsyzj.wanandroidkotlin.common.mvp
+package com.wsyzj.wanandroidkotlin.business
 
 /**
  * <pre>
@@ -9,6 +9,8 @@ package com.wsyzj.wanandroidkotlin.common.mvp
  *     version: 1.0
  * </pre>
  */
-class BaseIModel {
+class Article {
+
+
 
 }

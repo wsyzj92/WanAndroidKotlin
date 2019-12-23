@@ -1,13 +1,16 @@
 package com.wsyzj.wanandroidkotlin.common.http
 
 /**
- * 创建时间 : 2017/10/26
- * 编写人 : 焦洋
- * 功能描述 :
+ * <pre>
+ *     author : 焦洋
+ *     e-mail : wsyzj_92@163.com
+ *     time   : 2019/12/23
+ *     desc   :
+ *     version: 1.0
+ * </pre>
  */
-
 class BaseEntity<T> {
-    var code: String? = null
-    var msg: String? = null
-    var data: T? = null
+    var errorCode = -1
+    var msg = ""
+    var errorMsg: T? = null
 }

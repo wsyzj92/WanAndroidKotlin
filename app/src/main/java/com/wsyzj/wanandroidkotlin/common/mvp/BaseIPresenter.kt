@@ -1,17 +1,19 @@
 package com.wsyzj.wanandroidkotlin.common.mvp
 
-/**
- * @项目名：
- * @包名：
- * @文件名:
- * @创建者: TengFei
- * @创建时间:
- * @描述：
- */
-interface BaseIPresenter<V : BaseIView> {
+import android.view.View
 
-    fun attachView(view: V)
+/**
+ * <pre>
+ *     author : 焦洋
+ *     e-mail : wsyzj_92@163.com
+ *     time   : 2019/12/23
+ *     desc   :
+ *     version: 1.0
+ * </pre>
+ */
+interface BaseIPresenter {
+
+    fun attachView(v: BaseIView)
 
     fun detachView()
 }
-

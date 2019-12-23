@@ -1,4 +1,6 @@
-package com.wsyzj.wanandroidkotlin.common.mvp
+package com.wsyzj.wanandroidkotlin.common.http
+
+import retrofit2.http.GET
 
 /**
  * <pre>
@@ -9,6 +11,8 @@ package com.wsyzj.wanandroidkotlin.common.mvp
  *     version: 1.0
  * </pre>
  */
-class BaseIModel {
+interface BaseRetrofitApi {
+
+//    @GET("/article/list/{pageSize}/json")
 
 }

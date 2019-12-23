@@ -1,27 +1,22 @@
 package com.wsyzj.wanandroidkotlin.common.mvp
 
-
-import com.wsyzj.wanandroidkotlin.common.widget.StateLayout
+import android.view.View
 import io.reactivex.disposables.Disposable
 
 /**
- * @author: wsyzj
- * @date: 2017-03-18 10:09
- * @comment: MVP模式的View(通过Presenter将数据传入到该层 ， 负责View的展示相关)
+ * <pre>
+ *     author : 焦洋
+ *     e-mail : wsyzj_92@163.com
+ *     time   : 2019/12/23
+ *     desc   :
+ *     version: 1.0
+ * </pre>
  */
 interface BaseIView {
-
-    fun setStateLayout(stateLayout: StateLayout)
-
-    fun setStateLayout(throwable: Throwable, data: List<*>)
-
-    fun setStateLayout(throwable: Throwable, data: Any)
 
     fun showProgress()
 
     fun dismissProgress()
-
-    fun showToast(message: String)
 
     fun addDisposable(disposable: Disposable)
 }
