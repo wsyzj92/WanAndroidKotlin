@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <!-- 主界面 -->
-        <activity android:name=".MainActivity">
+        <activity android:name=".business.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

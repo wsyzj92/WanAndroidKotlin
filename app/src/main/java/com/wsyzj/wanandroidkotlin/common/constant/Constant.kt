@@ -11,7 +11,7 @@ package com.wsyzj.wanandroidkotlin.common.constant
  */
 class Constant {
     companion object {
-        const val HTTP_URL = "https://www.wanandroid.com"
+        const val HTTP_URL = "https://www.wanandroid.com/"
         const val HTTP_CODE = 0
         const val HTTP_CODE_RE_LOGIN = -1001       // 需要重新登录
         const val CONNECT_EXCEPTION = "网络连接异常，请检查您的网络状态"
