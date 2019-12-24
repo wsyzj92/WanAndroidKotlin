@@ -9,6 +9,6 @@ package com.wsyzj.wanandroidkotlin.common.mvp
  *     version: 1.0
  * </pre>
  */
-class BaseIModel {
+interface BaseIModel {
 
 }

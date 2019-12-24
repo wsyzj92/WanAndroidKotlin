@@ -9,12 +9,17 @@ package com.wsyzj.wanandroidkotlin.common.mvp
  *     version: 1.0
  * </pre>
  */
-class BasePresenter : BaseIPresenter {
+open class BasePresenter : BaseIPresenter {
 
     protected var mView: BaseIView? = null
     protected var mModel: BaseIModel? = null
 
     constructor()
+
+    constructor(mView: BaseIView?, mModel: BaseIModel?) {
+        this.mView = mView
+        this.mModel = mModel
+    }
 
     override fun attachView(v: BaseIView) {
         mView = v

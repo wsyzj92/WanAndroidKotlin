@@ -19,5 +19,5 @@ interface BaseRetrofitApi {
      * 首页列表
      */
     @GET("article/list/{pageNumber}/json")
-    fun homeList(@Path("pageNumber") int: Int): Flowable<BaseEntity<Article>>
+    fun getHomeList(@Path("pageNumber") int: Int): Flowable<BaseEntity<Article>>
 }
