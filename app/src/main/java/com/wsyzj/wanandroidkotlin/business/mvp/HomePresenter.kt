@@ -1,7 +1,6 @@
 package com.wsyzj.wanandroidkotlin.business.mvp
 
-import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
-import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
+import com.wsyzj.wanandroidkotlin.business.fragment.HomeFragment
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 
 /**
@@ -14,7 +13,12 @@ import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
  * </pre>
  */
 
-class HomePresenter : BasePresenter(), HomeContract.Presenter {
+class HomePresenter(view: HomeContract.View) : BasePresenter<HomeContract.View, HomeContract.Model>(),
+    HomeContract.Presenter {
+
+    init {
+        mModel = HomeModel()
+    }
 
     override fun getHomeList() {
 

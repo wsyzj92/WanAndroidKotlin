@@ -11,9 +11,9 @@ import android.view.View
  *     version: 1.0
  * </pre>
  */
-interface BaseIPresenter {
+interface BaseIPresenter<V : BaseIView> {
 
-    fun attachView(v: BaseIView)
+    fun attachView(v: V)
 
     fun detachView()
 }

@@ -1,5 +1,9 @@
 package com.wsyzj.wanandroidkotlin.common.mvp
 
+import com.wsyzj.wanandroidkotlin.business.mvp.HomeContract
+import com.wsyzj.wanandroidkotlin.business.mvp.HomeModel
+import com.wsyzj.wanandroidkotlin.common.http.BaseEntity
+
 /**
  * <pre>
  *     author : 焦洋
@@ -9,19 +13,12 @@ package com.wsyzj.wanandroidkotlin.common.mvp
  *     version: 1.0
  * </pre>
  */
-open class BasePresenter : BaseIPresenter {
+open class BasePresenter<V : BaseIView, M : BaseIModel> : BaseIPresenter<V> {
 
-    protected var mView: BaseIView? = null
-    protected var mModel: BaseIModel? = null
+    protected var mView: V? = null
+    protected var mModel: M? = null
 
-    constructor()
-
-    constructor(mView: BaseIView?, mModel: BaseIModel?) {
-        this.mView = mView
-        this.mModel = mModel
-    }
-
-    override fun attachView(v: BaseIView) {
+    override fun attachView(v: V) {
         mView = v
     }
 

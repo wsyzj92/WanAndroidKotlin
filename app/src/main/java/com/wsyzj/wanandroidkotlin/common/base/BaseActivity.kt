@@ -6,6 +6,8 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.ButterKnife
 import com.wsyzj.wanandroidkotlin.common.http.BaseRetrofit
+import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
+import com.wsyzj.wanandroidkotlin.common.mvp.BaseIPresenter
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 import com.wsyzj.wanandroidkotlin.common.utils.EventBusUtils
@@ -21,9 +23,9 @@ import io.reactivex.disposables.Disposable
  *     version: 1.0
  * </pre>
  */
-abstract class BaseActivity : AppCompatActivity(), BaseIView {
+abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompatActivity(), BaseIView {
 
-    var presenter: BasePresenter? = null
+    var presenter: P? = null
     var progressDialog: BaseProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +61,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseIView {
      * 创建MVP水的presenter
      */
     fun createPresenter() {
+        presenter = presenter()
         if (presenter != null) {
             presenter?.attachView(this)
         }
@@ -124,7 +127,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseIView {
         BaseRetrofit.add("$packageName.$localClassName", disposable)
     }
 
-    abstract fun presenter(): BasePresenter?
+    abstract fun presenter(): P?
 
     abstract fun layoutId(): Int
 

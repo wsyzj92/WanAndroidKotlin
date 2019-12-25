@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentActivity
 import butterknife.ButterKnife
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.common.http.BaseRetrofit
+import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 import com.wsyzj.wanandroidkotlin.common.utils.EventBusUtils
@@ -29,10 +30,10 @@ import io.reactivex.disposables.Disposable
  *     version: 1.0
  * </pre>
  */
-abstract class BaseFragment : Fragment(), BaseIView {
+abstract class BaseFragment<P : BasePresenter<BaseIView, BaseIModel>> : Fragment(), BaseIView {
 
     var activity: Activity? = null
-    var presenter: BasePresenter? = null
+    var presenter: P? = null
     var progressDialog: BaseProgressDialog? = null
 
     var isViewCreated: Boolean = false           // 控件是否初始化完成
@@ -107,6 +108,7 @@ abstract class BaseFragment : Fragment(), BaseIView {
      * Presenter的初始化操作
      */
     fun createPresenter() {
+        presenter = presenter()
         if (presenter != null) {
             presenter?.attachView(this)
         }
@@ -156,7 +158,7 @@ abstract class BaseFragment : Fragment(), BaseIView {
         BaseRetrofit.add(javaClass.simpleName + javaClass.`package`, disposable)
     }
 
-    abstract fun presenter(): BasePresenter?
+    abstract fun presenter(): P?
 
     abstract fun layoutId(): Int
 

@@ -27,7 +27,7 @@ class HomeContract {
         fun getHomeList(): Flowable<BaseEntity<Article>>
     }
 
-    internal interface Presenter : BaseIPresenter {
+    interface Presenter : BaseIPresenter<View> {
         fun getHomeList()
     }
 }

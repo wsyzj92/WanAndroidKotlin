@@ -1,47 +1,43 @@
 package com.wsyzj.wanandroidkotlin.business.fragment
 
-import butterknife.BindView
-import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.mvp.HomeContract
 import com.wsyzj.wanandroidkotlin.business.mvp.HomePresenter
 import com.wsyzj.wanandroidkotlin.common.base.BaseFragment
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
-import com.wsyzj.wanandroidkotlin.common.widget.BasePullToRefreshView
+import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 
 /**
  * <pre>
  *     author : 焦洋
  *     e-mail : wsyzj_92@163.com
- *     time   : 2019/12/24
+ *     time   : 2019/12/25
  *     desc   :
  *     version: 1.0
  * </pre>
  */
-class HomeFragment : BaseFragment<HomePresenter<HomeContract.View, HomeContract.Model>>(), HomeContract.View {
-
-    @BindView(R.id.base_pull_refresh)
-    lateinit var base_pull_refresh: BasePullToRefreshView
-
-    override fun presenter(): HomePresenter = HomePresenter(this)
-
-    override fun layoutId(): Int {
-        return R.layout.fragment_home
-    }
-
-    override fun initView() {
-
-    }
-
-    override fun initListener() {
-
-    }
-
-    override fun initData() {
-
-    }
+class TestFragment : BaseFragment<BasePresenter<BaseIView, BaseIModel>>(), HomeContract.View {
 
     override fun setHomeList() {
 
     }
+
+    override fun presenter(): HomePresenter = HomePresenter(this)
+
+    override fun layoutId(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun initView() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun initListener() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun initData() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }
