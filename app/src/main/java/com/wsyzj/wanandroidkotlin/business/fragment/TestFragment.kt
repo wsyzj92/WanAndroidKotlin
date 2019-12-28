@@ -16,28 +16,8 @@ import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
  *     version: 1.0
  * </pre>
  */
-class TestFragment : BaseFragment<BasePresenter<BaseIView, BaseIModel>>(), HomeContract.View {
+class TestFragment   {
 
-    override fun setHomeList() {
 
-    }
-
-    override fun presenter(): HomePresenter = HomePresenter(this)
-
-    override fun layoutId(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun initView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun initListener() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun initData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
 }

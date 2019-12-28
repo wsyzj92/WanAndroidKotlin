@@ -1,8 +1,14 @@
 <resources>
 
     <!-- 分割线的宽度 -->
-    <dimen name="pt1_divider">1pt</dimen>
-    <dimen name="pt128_navigation">128pt</dimen>
-    <dimen name="pt12_margin">12pt</dimen>
+    <dimen name="divider_1pt">1pt</dimen>
+    <dimen name="navigation_128pt">128pt</dimen>
+    <dimen name="padding_24pt">24pt</dimen>
+    <dimen name="margin_24pt">24pt</dimen>
+    <dimen name="lineSpacingExtra_7pt">7pt</dimen>
+
+    <dimen name="textSize_16sp">16sp</dimen>
+    <dimen name="textSize_14sp">14sp</dimen>
+    <dimen name="textSize_12sp">12sp</dimen>
 
 </resources>

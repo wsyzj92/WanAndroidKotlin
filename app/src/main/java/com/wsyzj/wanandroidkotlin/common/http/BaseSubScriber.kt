@@ -16,18 +16,18 @@ import java.net.UnknownHostException
  *     version: 1.0
  * </pre>
  */
-abstract class BaseSubScriber<T> : DisposableSubscriber<BaseEntity<T>>() {
+open abstract class BaseSubScriber<T> : DisposableSubscriber<BaseEntity<T>>() {
 
     override fun onNext(baseEntity: BaseEntity<T>?) {
-        if (baseEntity?.code == Constant.HTTP_CODE) {
+        if (baseEntity?.errorCode == Constant.HTTP_CODE) {
             if (baseEntity.data != null) {
-                onSuccess(baseEntity.data, baseEntity.msg)
+                onSuccess(baseEntity.data, baseEntity.errorMsg)
             } else {
-                ToastUtils.showShort(baseEntity.msg)
+                ToastUtils.showShort(baseEntity.errorMsg)
             }
         } else {
             onFailure(BaseResponseThrowable())
-            ToastUtils.showShort(baseEntity?.msg)
+            ToastUtils.showShort(baseEntity?.errorMsg)
         }
     }
 

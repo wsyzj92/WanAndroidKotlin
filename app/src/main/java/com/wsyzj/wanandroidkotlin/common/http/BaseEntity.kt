@@ -11,6 +11,6 @@ package com.wsyzj.wanandroidkotlin.common.http
  */
 class BaseEntity<T> {
     var errorCode = -1
-    var msg = ""
-    var errorMsg: T? = null
+    var errorMsg = ""
+    var data: T? = null
 }

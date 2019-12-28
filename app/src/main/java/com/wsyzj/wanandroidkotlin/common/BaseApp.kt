@@ -1,6 +1,7 @@
 package com.wsyzj.wanandroidkotlin.common
 
 import android.app.Application
+import kotlin.properties.Delegates
 
 /**
  * <pre>
@@ -19,6 +20,6 @@ class BaseApp : Application() {
     }
 
     companion object {
-        lateinit var sBaseApp: BaseApp
+        var sBaseApp: BaseApp by Delegates.notNull()
     }
 }

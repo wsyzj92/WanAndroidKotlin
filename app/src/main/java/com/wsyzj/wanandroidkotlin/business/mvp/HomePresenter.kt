@@ -21,6 +21,6 @@ class HomePresenter(view: HomeContract.View) : BasePresenter<HomeContract.View, 
     }
 
     override fun getHomeList() {
-
+        mView?.setHomeList()
     }
 }

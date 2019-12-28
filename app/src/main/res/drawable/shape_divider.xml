@@ -2,8 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <size
-        android:width="@dimen/pt1_divider"
-        android:height="@dimen/pt1_divider" />
+        android:width="@dimen/divider_1pt"
+        android:height="@dimen/divider_1pt" />
 
     <solid android:color="@color/colorDivider" />
 

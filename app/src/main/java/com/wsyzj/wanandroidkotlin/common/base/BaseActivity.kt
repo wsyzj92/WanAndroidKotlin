@@ -1,6 +1,7 @@
 package com.wsyzj.wanandroidkotlin.common.base
 
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -75,12 +76,17 @@ abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompa
         viewGroup.removeAllViews()
 
         var container = LinearLayout(this)
+        container.orientation = LinearLayout.VERTICAL
         container.layoutParams =
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        viewGroup.addView(container)
 
-        val content = IContextCompat.inflate(layoutId())
+//        val content = IContextCompat.inflate(layoutId())
+        val content = View.inflate(this, layoutId(), null)
+        content.layoutParams =
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         container.addView(content)
-        ButterKnife.bind(this)
+        ButterKnife.bind(this, container)
     }
 
     /**

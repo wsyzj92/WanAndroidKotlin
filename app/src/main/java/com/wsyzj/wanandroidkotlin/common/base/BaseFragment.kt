@@ -30,10 +30,10 @@ import io.reactivex.disposables.Disposable
  *     version: 1.0
  * </pre>
  */
-abstract class BaseFragment<P : BasePresenter<BaseIView, BaseIModel>> : Fragment(), BaseIView {
+abstract class BaseFragment : Fragment(), BaseIView {
 
     var activity: Activity? = null
-    var presenter: P? = null
+    //    var presenter: P? = null
     var progressDialog: BaseProgressDialog? = null
 
     var isViewCreated: Boolean = false           // 控件是否初始化完成
@@ -90,9 +90,9 @@ abstract class BaseFragment<P : BasePresenter<BaseIView, BaseIModel>> : Fragment
 
         BaseRetrofit.clear(javaClass.simpleName + javaClass.`package`)
 
-        if (presenter != null) {
-            presenter?.detachView()
-        }
+//        if (presenter != null) {
+//            presenter?.detachView()
+//        }
 
         if (isRegisterEventBus()) {
             EventBusUtils.unregister(this)
@@ -108,10 +108,10 @@ abstract class BaseFragment<P : BasePresenter<BaseIView, BaseIModel>> : Fragment
      * Presenter的初始化操作
      */
     fun createPresenter() {
-        presenter = presenter()
-        if (presenter != null) {
-            presenter?.attachView(this)
-        }
+//        presenter = presenter()
+//        if (presenter != null) {
+////            presenter?.attachView(this)
+//        }
     }
 
     /**
@@ -158,7 +158,7 @@ abstract class BaseFragment<P : BasePresenter<BaseIView, BaseIModel>> : Fragment
         BaseRetrofit.add(javaClass.simpleName + javaClass.`package`, disposable)
     }
 
-    abstract fun presenter(): P?
+//    abstract fun presenter(): Nullable?
 
     abstract fun layoutId(): Int
 
