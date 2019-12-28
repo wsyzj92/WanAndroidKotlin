@@ -1,6 +1,8 @@
 package com.wsyzj.wanandroidkotlin.common
 
 import android.app.Application
+import android.content.Intent
+import com.blankj.utilcode.util.Utils
 import kotlin.properties.Delegates
 
 /**
@@ -14,12 +16,16 @@ import kotlin.properties.Delegates
  */
 class BaseApp : Application() {
 
+    companion object {
+        var sBaseApp: BaseApp by Delegates.notNull()
+    }
+
     override fun onCreate() {
         super.onCreate()
         sBaseApp = this
     }
 
-    companion object {
-        var sBaseApp: BaseApp by Delegates.notNull()
+    fun initLibrary() {
+        Utils.init(sBaseApp)
     }
 }

@@ -24,4 +24,7 @@ class ViewPagerTabAdapter(fm: FragmentManager, val fragments: ArrayList<Fragment
         return fragments?.size ?: 0
     }
 
+    override fun getPageTitle(position: Int): CharSequence? {
+        return titles[position]
+    }
 }

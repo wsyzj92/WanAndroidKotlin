@@ -1,13 +1,20 @@
 package com.wsyzj.wanandroidkotlin.business.fragment
 
 import android.annotation.SuppressLint
+import android.widget.LinearLayout
 import androidx.annotation.Nullable
+import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.BindView
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.wsyzj.wanandroidkotlin.R
+import com.wsyzj.wanandroidkotlin.business.adapter.HomeAdapter
 import com.wsyzj.wanandroidkotlin.business.bean.Article
+import com.wsyzj.wanandroidkotlin.business.bean.DataX
 import com.wsyzj.wanandroidkotlin.business.mvp.HomeContract
 import com.wsyzj.wanandroidkotlin.business.mvp.HomePresenter
 import com.wsyzj.wanandroidkotlin.common.base.BaseFragment
+import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import com.wsyzj.wanandroidkotlin.common.http.BaseEntity
 import com.wsyzj.wanandroidkotlin.common.http.BaseRequest
 import com.wsyzj.wanandroidkotlin.common.http.BaseSchedulers
@@ -25,7 +32,7 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
  *     author : 焦洋
  *     e-mail : wsyzj_92@163.com
  *     time   : 2019/12/24
- *     desc   :
+ *     desc   : 首页
  *     version: 1.0
  * </pre>
  */
@@ -35,6 +42,8 @@ class HomeFragment : BaseFragment() {
     lateinit var base_pull_refresh: BasePullToRefreshView
 
     var pageNumber: Int = 0
+    var articles: MutableList<DataX>? = null
+    var homeAdapter: HomeAdapter? = null
 
     override fun layoutId(): Int {
         return R.layout.fragment_home
@@ -45,46 +54,62 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initListener() {
+        base_pull_refresh.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+                getHomeList(false)
+            }
 
+            override fun onRefresh(refreshLayout: RefreshLayout) {
+                getHomeList(true)
+            }
+        })
     }
 
     override fun initData() {
-        getHomeList()
+        getHomeList(true)
     }
 
     /**
      * 获取首页列表
      */
     @SuppressLint("CheckResult")
-    private fun getHomeList() {
-        var subscribe = object : BaseSubScriber<BaseEntity<Article>>() {
-            override fun onFailure(throwable: Throwable?) {
-
-            }
-
-            override fun onSuccess(t: BaseEntity<Article>?, msg: String) {
-
-            }
+    fun getHomeList(refreshing: Boolean) {
+        if (refreshing) {
+            pageNumber = 0
+        } else {
+            pageNumber++
         }
 
-//        BaseRequest
-//            .instance
-//            .service
-//            .getHomeList(pageNumber)
-//            .compose(BaseSchedulers.io_main())
-//            .subscribeWith<BaseEntity<Article>>(subscribe)
+        val subscribe =
+            BaseRequest.instance.service.getHomeList(pageNumber).compose(BaseSchedulers.io_main()).subscribe() {
+                if (it.errorCode == Constant.HTTP_CODE) {
+                    it.let {
+                        var list = it.data?.datas!!
+                        if (articles == null || refreshing) {
+                            articles = list
+                        } else {
+                            articles?.addAll(list)
+                        }
+                        base_pull_refresh.finishRefresh()
+                        base_pull_refresh.finishLoadMore()
+                        base_pull_refresh.setNoMoreData(20 < list.size)
+                        setHomeList(articles!!)
+                    }
+                }
+            }
+        addDisposable(subscribe)
+    }
 
-//        val subscriber = mModel.indexBlockVoList()
-//            .subscribeWith<>(object : BaseSubscriber<HomeCourse>() {
-//                override fun onSuccess(data: HomeCourse, successMsg: String) {
-//                    mView.setCourseList(data.multiItemEntity)
-//                    mView.finishRefresh()
-//                }
-//
-//                override fun onFailure(throwable: Throwable) {
-//                    mView.finishRefresh()
-//                }
-//            })
-//        mView.addDisposable(subscriber)
+    /**
+     * 设置首页数据
+     */
+    fun setHomeList(articles: MutableList<DataX>) {
+        if (homeAdapter == null) {
+            homeAdapter = HomeAdapter(articles)
+            base_pull_refresh.setLayoutManager(LinearLayoutManager(activity))
+            base_pull_refresh.setAdapter(homeAdapter!!)
+        } else {
+            homeAdapter?.setNewData(articles)
+        }
     }
 }

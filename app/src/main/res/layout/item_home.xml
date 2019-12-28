@@ -1,20 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24pt">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_48pt"
+        android:layout_marginTop="@dimen/margin_24pt"
+        android:layout_marginRight="@dimen/margin_48pt"
         android:ellipsize="end"
         android:lineSpacingExtra="@dimen/lineSpacingExtra_7pt"
         android:maxLines="2"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/textSize_14sp"
+        android:textSize="@dimen/textSize_16sp"
         tools:text="这个是文章的标题大概可以显示两行吧" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_48pt"
+        android:layout_marginTop="@dimen/margin_24pt"
+        android:layout_marginRight="@dimen/margin_48pt"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/textSize_14sp"
+            tools:text="作者:  我是一坨焦" />
+
+        <TextView
+            android:id="@+id/tv_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_24pt"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/textSize_14sp"
+            tools:text="时间 ：昨天" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_1pt"
+        android:layout_marginTop="@dimen/margin_24pt"
+        android:background="@color/colorDivider" />
+
+</LinearLayout>

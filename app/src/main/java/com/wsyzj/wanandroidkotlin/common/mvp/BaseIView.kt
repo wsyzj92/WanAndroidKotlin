@@ -14,6 +14,8 @@ import io.reactivex.disposables.Disposable
  */
 interface BaseIView {
 
+    fun showToast(message: String)
+
     fun showProgress()
 
     fun dismissProgress()

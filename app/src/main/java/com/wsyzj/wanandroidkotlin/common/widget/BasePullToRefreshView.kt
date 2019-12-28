@@ -3,10 +3,13 @@ package com.wsyzj.wanandroidkotlin.common.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
+import butterknife.ButterKnife
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -32,9 +35,13 @@ class BasePullToRefreshView : LinearLayout {
     @BindView(R.id.recycler_view)
     lateinit var recycler_view: RecyclerView
 
-    constructor(context: Context?) : super(context, null)
+    constructor(context: Context?) : super(context) {
+        init(context)
+    }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs, 0)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init(context)
+    }
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         init(context)
@@ -42,11 +49,14 @@ class BasePullToRefreshView : LinearLayout {
 
     fun init(context: Context?) {
         val view = LayoutInflater.from(context).inflate(R.layout.widget_base_pull_to_refresh, null)
-        addView(view)
+        addView(
+            view,
+            FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        )
+        ButterKnife.bind(this)
     }
 
     fun getSmartRefreshView(): SmartRefreshLayout {
-
         return smart_refresh
     }
 
@@ -128,7 +138,7 @@ class BasePullToRefreshView : LinearLayout {
     /**
      * 设置适配器
      */
-    fun <T, K : BaseViewHolder> setAdapter(adapter: BaseQuickAdapter<T, K>) {
+    fun setAdapter(adapter: BaseQuickAdapter<*, *>) {
         recycler_view.adapter = adapter
     }
 }

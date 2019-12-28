@@ -1,11 +1,14 @@
 package com.wsyzj.wanandroidkotlin.common.base
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.ButterKnife
+import com.blankj.utilcode.util.AdaptScreenUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.wsyzj.wanandroidkotlin.common.http.BaseRetrofit
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIPresenter
@@ -105,6 +108,10 @@ abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompa
         }
     }
 
+    override fun showToast(message: String) {
+        ToastUtils.showShort(message)
+    }
+
     /**
      * 显示dialog
      */
@@ -131,6 +138,10 @@ abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompa
      */
     override fun addDisposable(disposable: Disposable) {
         BaseRetrofit.add("$packageName.$localClassName", disposable)
+    }
+
+    override fun getResources(): Resources {
+        return AdaptScreenUtils.adaptWidth(super.getResources(), 1080)
     }
 
     abstract fun presenter(): P?

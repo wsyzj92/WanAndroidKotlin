@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import butterknife.ButterKnife
+import com.blankj.utilcode.util.ToastUtils
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.common.http.BaseRetrofit
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
@@ -73,10 +74,12 @@ abstract class BaseFragment : Fragment(), BaseIView {
         container.layoutParams =
             FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
 
-        val content = IContextCompat.inflate(layoutId())
+        val content = View.inflate(activity, layoutId(), null)
+        content.layoutParams =
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         container.addView(content)
-
         ButterKnife.bind(this, content)
+
         createPresenter()
         initView()
         initListener()
@@ -128,6 +131,10 @@ abstract class BaseFragment : Fragment(), BaseIView {
      */
     fun isRegisterEventBus(): Boolean {
         return false
+    }
+
+    override fun showToast(message: String) {
+        ToastUtils.showShort(message)
     }
 
     /**

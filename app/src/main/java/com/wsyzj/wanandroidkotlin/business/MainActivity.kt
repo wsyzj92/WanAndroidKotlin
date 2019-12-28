@@ -5,6 +5,7 @@ import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
 import com.google.android.material.tabs.TabLayout
 import com.wsyzj.wanandroidkotlin.R
+import com.wsyzj.wanandroidkotlin.business.adapter.ViewPagerTabAdapter
 import com.wsyzj.wanandroidkotlin.business.fragment.HomeFragment
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
 import com.wsyzj.wanandroidkotlin.common.http.BaseRequest
@@ -50,5 +51,11 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
     private fun loadMainPage() {
         var fragments: ArrayList<Fragment> = arrayListOf()
         fragments.add(HomeFragment())
+
+        var tabs: ArrayList<String> = arrayListOf()
+        tabs.add("首页")
+
+        view_pager.adapter = ViewPagerTabAdapter(supportFragmentManager, fragments, tabs)
+        tab_layout.setupWithViewPager(view_pager)
     }
 }
