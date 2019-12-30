@@ -1,6 +1,7 @@
 package com.wsyzj.wanandroidkotlin.common.http
 
 import com.wsyzj.wanandroidkotlin.business.bean.Article
+import com.wsyzj.wanandroidkotlin.business.bean.Banner
 import io.reactivex.Flowable
 import retrofit2.http.*
 
@@ -20,4 +21,10 @@ interface BaseRetrofitApi {
      */
     @GET("article/list/{pageNumber}/json")
     fun getHomeList(@Path("pageNumber") int: Int): Flowable<BaseEntity<Article>>
+
+    /**
+     * 首页banner
+     */
+    @GET("banner/json")
+    fun getBannerList(): Flowable<Banner>
 }

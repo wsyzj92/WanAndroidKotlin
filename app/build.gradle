@@ -56,4 +56,5 @@ dependencies {
 
     // 第三方（纯UI）
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    implementation 'com.youth.banner:banner:1.4.10'
 }

@@ -66,7 +66,29 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initData() {
+        getBannerList()
         getHomeList(true)
+    }
+
+    /**
+     * 获取首页banner
+     */
+    @SuppressLint("CheckResult")
+    fun getBannerList() {
+        BaseRequest.instance.service.getBannerList().compose(BaseSchedulers.io_main()).subscribe() {
+            if (it.errorCode == Constant.HTTP_CODE) {
+                var list = it.data
+            }
+        }
+    }
+
+    /**
+     * 添加头部banner布局
+     */
+    fun loadBannerHeadhToRecycler() {
+        if (base_pull_refresh.getHeaderLayoutCount() == 0) {
+
+        }
     }
 
     /**

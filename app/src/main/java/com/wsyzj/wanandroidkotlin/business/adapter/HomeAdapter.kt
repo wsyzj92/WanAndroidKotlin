@@ -17,6 +17,7 @@ import com.wsyzj.wanandroidkotlin.business.bean.DataX
 class HomeAdapter(data: List<DataX>?) : BaseQuickAdapter<DataX, BaseViewHolder>(R.layout.item_home, data) {
 
     override fun convert(helper: BaseViewHolder, item: DataX?) {
+        helper.setText(R.id.tv_source, item?.chapterName)
         helper.setText(R.id.tv_title, item?.title)
         helper.setText(R.id.tv_author, "作者 : " + item?.author)
         helper.setText(R.id.tv_data, "时间 : " + item?.niceDate)

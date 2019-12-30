@@ -12,6 +12,9 @@
     <dimen name="margin_36pt">36pt</dimen>
     <dimen name="margin_48pt">48pt</dimen>
 
+    <dimen name="corner_12pt">12pt</dimen>
+    <dimen name="corner_24pt">24pt</dimen>
+
     <dimen name="textSize_16sp">16sp</dimen>
     <dimen name="textSize_14sp">14sp</dimen>
     <dimen name="textSize_12sp">12sp</dimen>

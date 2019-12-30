@@ -3,6 +3,7 @@ package com.wsyzj.wanandroidkotlin.common.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -34,6 +35,8 @@ class BasePullToRefreshView : LinearLayout {
 
     @BindView(R.id.recycler_view)
     lateinit var recycler_view: RecyclerView
+
+    var recyclerAdapter: BaseQuickAdapter<*, *>? = null
 
     constructor(context: Context?) : super(context) {
         init(context)
@@ -129,6 +132,25 @@ class BasePullToRefreshView : LinearLayout {
     }
 
     /**
+     * 添加头部
+     */
+    fun addHeaderView(view: View) {
+        if (recyclerAdapter != null) {
+            recyclerAdapter?.addHeaderView(view)
+        }
+    }
+
+    /**
+     * 获取已添加头部的数量
+     */
+    fun getHeaderLayoutCount(): Int? {
+        if (recyclerAdapter != null) {
+            return recyclerAdapter?.headerLayoutCount
+        }
+        return 0
+    }
+
+    /**
      * 设置布局管理器
      */
     fun setLayoutManager(layout: RecyclerView.LayoutManager) {
@@ -139,6 +161,7 @@ class BasePullToRefreshView : LinearLayout {
      * 设置适配器
      */
     fun setAdapter(adapter: BaseQuickAdapter<*, *>) {
+        recyclerAdapter = adapter
         recycler_view.adapter = adapter
     }
 }
