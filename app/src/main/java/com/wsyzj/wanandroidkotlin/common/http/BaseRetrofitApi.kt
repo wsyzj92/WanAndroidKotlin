@@ -1,7 +1,7 @@
 package com.wsyzj.wanandroidkotlin.common.http
 
 import com.wsyzj.wanandroidkotlin.business.bean.Article
-import com.wsyzj.wanandroidkotlin.business.bean.Banner
+import com.wsyzj.wanandroidkotlin.business.bean.HomdeBanner
 import io.reactivex.Flowable
 import retrofit2.http.*
 
@@ -26,5 +26,5 @@ interface BaseRetrofitApi {
      * 首页banner
      */
     @GET("banner/json")
-    fun getBannerList(): Flowable<Banner>
+    fun getBannerList(): Flowable<HomdeBanner>
 }

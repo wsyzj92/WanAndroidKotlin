@@ -1,31 +1,22 @@
 package com.wsyzj.wanandroidkotlin.business.fragment
 
 import android.annotation.SuppressLint
-import android.widget.LinearLayout
-import androidx.annotation.Nullable
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.BindView
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.adapter.HomeAdapter
-import com.wsyzj.wanandroidkotlin.business.bean.Article
+import com.wsyzj.wanandroidkotlin.business.bean.DataBanner
 import com.wsyzj.wanandroidkotlin.business.bean.DataX
-import com.wsyzj.wanandroidkotlin.business.mvp.HomeContract
-import com.wsyzj.wanandroidkotlin.business.mvp.HomePresenter
+import com.wsyzj.wanandroidkotlin.business.widget.GlideImageLoader
 import com.wsyzj.wanandroidkotlin.common.base.BaseFragment
 import com.wsyzj.wanandroidkotlin.common.constant.Constant
-import com.wsyzj.wanandroidkotlin.common.http.BaseEntity
 import com.wsyzj.wanandroidkotlin.common.http.BaseRequest
 import com.wsyzj.wanandroidkotlin.common.http.BaseSchedulers
-import com.wsyzj.wanandroidkotlin.common.http.BaseSubScriber
-import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
-import com.wsyzj.wanandroidkotlin.common.mvp.BaseIPresenter
-import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
-import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
+import com.wsyzj.wanandroidkotlin.common.utils.IContextCompat
 import com.wsyzj.wanandroidkotlin.common.widget.BasePullToRefreshView
-import io.reactivex.Flowable
-import kotlinx.android.synthetic.main.fragment_home.view.*
+import com.youth.banner.Banner
 
 /**
  * <pre>
@@ -55,17 +46,19 @@ class HomeFragment : BaseFragment() {
 
     override fun initListener() {
         base_pull_refresh.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
-            override fun onLoadMore(refreshLayout: RefreshLayout) {
-                getHomeList(false)
+            override fun onRefresh(refreshLayout: RefreshLayout) {
+                getBannerList()
+                getHomeList(true)
             }
 
-            override fun onRefresh(refreshLayout: RefreshLayout) {
-                getHomeList(true)
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+                getHomeList(false)
             }
         })
     }
 
     override fun initData() {
+        setHomeList(null)
         getBannerList()
         getHomeList(true)
     }
@@ -78,23 +71,38 @@ class HomeFragment : BaseFragment() {
         BaseRequest.instance.service.getBannerList().compose(BaseSchedulers.io_main()).subscribe() {
             if (it.errorCode == Constant.HTTP_CODE) {
                 var list = it.data
+
+                val headerView = IContextCompat.inflate(R.layout.recycler_header_home_banner)
+                var banner = headerView.findViewById<Banner>(R.id.banner)
+
+                banner.setImageLoader(GlideImageLoader())
+                    .setImages(getBannerPahts(list))
+                    .start()
+
+                if (base_pull_refresh.getHeaderLayoutCount() == 0) {
+                    base_pull_refresh.addHeaderView(headerView)
+                }
             }
         }
     }
 
-    /**
-     * 添加头部banner布局
-     */
-    fun loadBannerHeadhToRecycler() {
-        if (base_pull_refresh.getHeaderLayoutCount() == 0) {
-
+    fun getBannerPahts(list: MutableList<DataBanner>): List<String> {
+        if (list.size == 0) {
+            return listOf()
         }
+        var paths = mutableListOf<String>()
+
+        for (dataBanner in list) {
+            paths.add(dataBanner.imagePath)
+        }
+        return paths
     }
 
     /**
      * 获取首页列表
      */
     @SuppressLint("CheckResult")
+
     fun getHomeList(refreshing: Boolean) {
         if (refreshing) {
             pageNumber = 0
@@ -125,7 +133,7 @@ class HomeFragment : BaseFragment() {
     /**
      * 设置首页数据
      */
-    fun setHomeList(articles: MutableList<DataX>) {
+    fun setHomeList(articles: MutableList<DataX>?) {
         if (homeAdapter == null) {
             homeAdapter = HomeAdapter(articles)
             base_pull_refresh.setLayoutManager(LinearLayoutManager(activity))

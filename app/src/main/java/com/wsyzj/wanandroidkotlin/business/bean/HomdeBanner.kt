@@ -9,13 +9,13 @@ package com.wsyzj.wanandroidkotlin.business.bean
  *     version: 1.0
  * </pre>
  */
-data class Banner(
-    val `data`: List<Data>,
+data class HomdeBanner(
+    val `data`: MutableList<DataBanner>,
     val errorCode: Int,
     val errorMsg: String
 )
 
-data class Data(
+data class DataBanner(
     val desc: String,
     val id: Int,
     val imagePath: String,
