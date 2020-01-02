@@ -1,6 +1,11 @@
 package com.wsyzj.wanandroidkotlin.business
 
+import android.app.Activity
+import android.view.KeyEvent
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -10,24 +15,28 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
+import com.blankj.utilcode.util.IntentUtils
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.adapter.ViewPagerTabAdapter
 import com.wsyzj.wanandroidkotlin.business.fragment.HomeFragment
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
+import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 /**
  * 主界面
  */
-class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
+class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
+    NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.drawer_layout)
-    lateinit var drawerLayout: DrawerLayout
+    lateinit var drawer_layout: DrawerLayout
 
     @BindView(R.id.toolbar)
     lateinit var toolbar: Toolbar
@@ -41,8 +50,6 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
     @BindView(R.id.navigation)
     lateinit var navigation: NavigationView
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-
     override fun presenter(): BasePresenter<BaseIView, BaseIModel>? {
         return null
     }
@@ -53,15 +60,17 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
 
     override fun initView() {
         setSupportActionBar(toolbar)
-        val coordinator_layout = findNavController(R.id.coordinator_layout)
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send
-            ), drawerLayout
+        val toggle = ActionBarDrawerToggle(
+            this,
+            drawer_layout,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
-//        setupActionBarWithNavController(coordinator_layout, appBarConfiguration)
-//        navigation.setupWithNavController(coordinator_layout)
+        drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        navigation.setNavigationItemSelectedListener(this)
     }
 
     override fun initListener() {
@@ -70,6 +79,27 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
 
     override fun initData() {
         loadMainPage()
+    }
+
+    override fun onBackPressed() {
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return false
+            } else {
+                moveTaskToBack(false)
+                return true
+            }
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
     /**
@@ -86,5 +116,20 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
 
         view_pager.adapter = ViewPagerTabAdapter(supportFragmentManager, fragments, tabs)
         tab_layout.setupWithViewPager(view_pager)
+    }
+
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        val id = p0.getItemId()
+        if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_gallery) {
+
+        }
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
     }
 }
