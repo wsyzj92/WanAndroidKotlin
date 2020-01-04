@@ -128,6 +128,7 @@ class HomeFragment : BaseFragment() {
                 }
             }
         addDisposable(subscribe)
+
     }
 
     /**
