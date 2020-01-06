@@ -49,6 +49,7 @@ class HomeFragment : BaseFragment() {
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 getBannerList()
                 getHomeList(true)
+
             }
 
             override fun onLoadMore(refreshLayout: RefreshLayout) {
