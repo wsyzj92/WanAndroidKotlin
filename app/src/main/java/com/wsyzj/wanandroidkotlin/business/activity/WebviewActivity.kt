@@ -1,5 +1,6 @@
 package com.wsyzj.wanandroidkotlin.business.activity
 
+import android.view.KeyEvent
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.widget.BaseWebView
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
@@ -51,4 +52,5 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
             webview?.loadUrl(url)
         }
     }
+
 }

@@ -24,9 +24,5 @@ class HomeAdapter(data: List<DataX>?) : BaseQuickAdapter<DataX, BaseViewHolder>(
         helper.setText(R.id.tv_title, item?.title)
         helper.setText(R.id.tv_author, "作者 : " + item?.author)
         helper.setText(R.id.tv_data, "时间 : " + item?.niceDate)
-
-        setOnItemClickListener { adapter, view, position ->
-            IntentManager.webview(mContext as Activity, item?.link)
-        }
     }
 }

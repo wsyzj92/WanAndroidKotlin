@@ -1,6 +1,7 @@
 package com.wsyzj.wanandroidkotlin.business.fragment
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.BindView
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -145,6 +146,10 @@ class HomeFragment : BaseFragment() {
             base_pull_refresh.setAdapter(homeAdapter!!)
         } else {
             homeAdapter?.setNewData(articles)
+        }
+
+        homeAdapter?.setOnItemClickListener { adapter, view, position ->
+            IntentManager.webview(activity, articles?.get(position)?.link)
         }
     }
 }
