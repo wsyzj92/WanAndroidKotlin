@@ -1,33 +1,24 @@
 package com.wsyzj.wanandroidkotlin.business
 
-import android.app.Activity
 import android.view.KeyEvent
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
-import com.blankj.utilcode.util.IntentUtils
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.adapter.ViewPagerTabAdapter
 import com.wsyzj.wanandroidkotlin.business.fragment.HomeFragment
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
-import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 
 /**
  * 主界面
@@ -47,8 +38,8 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
     @BindView(R.id.view_pager)
     lateinit var view_pager: ViewPager
 
-    @BindView(R.id.navigation)
-    lateinit var navigation: NavigationView
+    @BindView(R.id.navigation_view)
+    lateinit var navigation_view: NavigationView
 
     override fun presenter(): BasePresenter<BaseIView, BaseIModel>? {
         return null
@@ -59,6 +50,7 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
     }
 
     override fun initView() {
+        navigation.visibility = View.GONE
         setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(
             this,
@@ -70,7 +62,7 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
-        navigation.setNavigationItemSelectedListener(this)
+        navigation_view.setNavigationItemSelectedListener(this)
     }
 
     override fun initListener() {

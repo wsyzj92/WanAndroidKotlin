@@ -9,6 +9,7 @@ import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.adapter.HomeAdapter
 import com.wsyzj.wanandroidkotlin.business.bean.DataBanner
 import com.wsyzj.wanandroidkotlin.business.bean.DataX
+import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
 import com.wsyzj.wanandroidkotlin.business.widget.GlideImageLoader
 import com.wsyzj.wanandroidkotlin.common.base.BaseFragment
 import com.wsyzj.wanandroidkotlin.common.constant.Constant
@@ -78,6 +79,9 @@ class HomeFragment : BaseFragment() {
 
                 banner.setImageLoader(GlideImageLoader())
                     .setImages(getBannerPahts(list))
+                    .setOnBannerListener {
+                        IntentManager.webview(activity, list[it].url)
+                    }
                     .start()
 
                 if (base_pull_refresh.getHeaderLayoutCount() == 0) {

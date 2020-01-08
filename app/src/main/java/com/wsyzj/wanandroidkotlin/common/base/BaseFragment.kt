@@ -33,7 +33,7 @@ import io.reactivex.disposables.Disposable
  */
 abstract class BaseFragment : Fragment(), BaseIView {
 
-    var activity: Activity? = null
+    open var activity: Activity? = null
     //    var presenter: P? = null
     var progressDialog: BaseProgressDialog? = null
 

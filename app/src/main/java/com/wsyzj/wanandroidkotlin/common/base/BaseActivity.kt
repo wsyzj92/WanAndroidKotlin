@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.ButterKnife
 import com.blankj.utilcode.util.AdaptScreenUtils
+import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.wsyzj.wanandroidkotlin.business.widget.BaseNavigationView
 import com.wsyzj.wanandroidkotlin.common.http.BaseRetrofit
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIPresenter
@@ -31,6 +34,7 @@ abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompa
 
     var presenter: P? = null
     var progressDialog: BaseProgressDialog? = null
+    lateinit var navigation: BaseNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +88,16 @@ abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompa
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         viewGroup.addView(container)
 
-//        val content = IContextCompat.inflate(layoutId())
+        // 标题栏
+        navigation = BaseNavigationView(this)
+        navigation.layoutParams =
+            LinearLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                AdaptScreenUtils.pt2Px(128F)
+            )
+        container.addView(navigation)
+
+        // 真正显示的布局
         val content = View.inflate(this, layoutId(), null)
         content.layoutParams =
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)

@@ -25,6 +25,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".business.activity.WebviewActivity" />
+
     </application>
 
 </manifest>
