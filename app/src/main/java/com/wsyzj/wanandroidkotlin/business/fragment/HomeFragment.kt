@@ -4,12 +4,15 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.BindView
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.enums.PopupAnimation
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.adapter.HomeAdapter
 import com.wsyzj.wanandroidkotlin.business.bean.DataBanner
 import com.wsyzj.wanandroidkotlin.business.bean.DataX
+import com.wsyzj.wanandroidkotlin.business.dialog.LoginDialog
 import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
 import com.wsyzj.wanandroidkotlin.business.widget.GlideImageLoader
 import com.wsyzj.wanandroidkotlin.common.base.BaseFragment
@@ -52,6 +55,12 @@ class HomeFragment : BaseFragment() {
                 getBannerList()
                 getHomeList(true)
 
+                var loginDialog = LoginDialog(context!!)
+                XPopup
+                    .Builder(activity)
+                    .popupAnimation(PopupAnimation.TranslateAlphaFromTop)
+                    .asCustom(loginDialog)
+                    .show()
             }
 
             override fun onLoadMore(refreshLayout: RefreshLayout) {
