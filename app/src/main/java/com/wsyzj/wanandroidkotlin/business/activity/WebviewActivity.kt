@@ -48,6 +48,7 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
 
     private fun getIntentExtras() {
         if (intent != null) {
+
             url = intent.getStringExtra("url")
             webview?.loadUrl(url)
         }
