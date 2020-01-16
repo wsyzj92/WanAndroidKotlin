@@ -26,30 +26,64 @@ class BaseNavigationView : FrameLayout {
     @BindView(R.id.iv_back)
     lateinit var iv_back: ImageView
 
+    @BindView(R.id.iv_collect)
+    lateinit var iv_collect: ImageView
+
+    var onBackClickListener: OnClickListener? = null
+    var onCollectClickListener: OnClickListener? = null
+
+
+    fun setBackClickListener(listener: OnClickListener) {
+        onBackClickListener = listener
+    }
+
+    fun setCollectClickListener(listener: OnClickListener) {
+        onCollectClickListener = listener
+    }
+
     constructor(context: Context) : super(context) {
-        inits()
+        initView()
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        inits()
+        initView()
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        inits()
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+        initView()
     }
 
-    private fun inits() {
+    private fun initView() {
         val view = LayoutInflater.from(context)?.inflate(R.layout.widget_base_navigation, null)
         addView(view)
         ButterKnife.bind(this)
     }
 
-    @OnClick(R.id.iv_back)
+    fun setCollectImageResource(resId: Int) {
+        iv_collect.setImageResource(resId)
+    }
+
+    @OnClick(R.id.iv_back, R.id.iv_collect)
     fun onClick(view: View) {
         when (view.id) {
             R.id.iv_back -> {
-                val activity = context as Activity
-                activity.finish()
+                // 返回键
+                if (onBackClickListener != null) {
+                    onBackClickListener?.onClick(view)
+                } else {
+                    val activity = context as Activity
+                    activity.finish()
+                }
+            }
+            R.id.iv_collect -> {
+                // 收藏
+                if (onCollectClickListener != null) {
+                    onCollectClickListener?.onClick(view)
+                }
             }
         }
     }

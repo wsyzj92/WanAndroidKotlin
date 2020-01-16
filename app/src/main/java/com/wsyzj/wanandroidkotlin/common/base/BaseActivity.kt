@@ -30,11 +30,12 @@ import io.reactivex.disposables.Disposable
  *     version: 1.0
  * </pre>
  */
-abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompatActivity(), BaseIView {
+abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompatActivity(),
+    BaseIView {
 
     var presenter: P? = null
     var progressDialog: BaseProgressDialog? = null
-    lateinit var navigation: BaseNavigationView
+    lateinit var baseNavigationView: BaseNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,22 +86,28 @@ abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompa
         var container = LinearLayout(this)
         container.orientation = LinearLayout.VERTICAL
         container.layoutParams =
-            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
         viewGroup.addView(container)
 
         // 标题栏
-        navigation = BaseNavigationView(this)
-        navigation.layoutParams =
+        baseNavigationView = BaseNavigationView(this)
+        baseNavigationView.layoutParams =
             LinearLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 AdaptScreenUtils.pt2Px(128F)
             )
-        container.addView(navigation)
+        container.addView(baseNavigationView)
 
         // 真正显示的布局
         val content = View.inflate(this, layoutId(), null)
         content.layoutParams =
-            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
         container.addView(content)
         ButterKnife.bind(this, container)
     }

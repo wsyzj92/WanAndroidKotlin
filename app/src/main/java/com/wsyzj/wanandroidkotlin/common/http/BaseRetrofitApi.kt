@@ -41,4 +41,10 @@ interface BaseRetrofitApi {
      */
     @POST("user/register")
     fun register(@Query("username") username: String, @Query("password") password: String, @Query("repassword") repassword: String): Flowable<BaseEntity<Login>>
+
+    /**
+     * 收藏站内文章
+     */
+    @POST("lg/collect/{id}/json")
+    fun collect(@Path("id") id: Int): Flowable<HomdeBanner>
 }

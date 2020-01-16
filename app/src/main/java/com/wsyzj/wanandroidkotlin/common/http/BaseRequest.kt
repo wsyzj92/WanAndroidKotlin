@@ -26,15 +26,20 @@ class BaseRequest {
     }
 
     init {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        // 日志拦截器
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        // 统一参数拦截器
+        val headerInterceptor = BaseHeaderInterceptor()
 
         val builder = OkHttpClient.Builder()
             .connectTimeout(12, TimeUnit.SECONDS)
             .connectTimeout(12, TimeUnit.SECONDS)
             .writeTimeout(12, TimeUnit.SECONDS)
             .readTimeout(12, TimeUnit.SECONDS)
-            .addInterceptor(interceptor)
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(headerInterceptor)
 
         service = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())

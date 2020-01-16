@@ -14,6 +14,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.lxj.xpopup.core.CenterPopupView
 import com.lxj.xpopup.impl.PartShadowPopupView
 import com.wsyzj.wanandroidkotlin.R
+import com.wsyzj.wanandroidkotlin.business.utils.StorageUtils
 import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import com.wsyzj.wanandroidkotlin.common.http.BaseRequest
 import com.wsyzj.wanandroidkotlin.common.http.BaseSchedulers
@@ -126,6 +127,9 @@ class LoginDialog(context: Context) : CenterPopupView(context) {
             .subscribe() {
                 if (it.errorCode == Constant.HTTP_CODE) {
                     it.let {
+                        StorageUtils.setLoginUserName(username)
+                        StorageUtils.setLoginPassword(password)
+                        StorageUtils.setLoginStatus(true)
                         ToastUtils.showShort("登录成功")
                         dismiss()
                     }
@@ -187,8 +191,11 @@ class LoginDialog(context: Context) : CenterPopupView(context) {
             .subscribe() {
                 if (it.errorCode == Constant.HTTP_CODE) {
                     it.let {
-                        dismiss()
+                        StorageUtils.setLoginUserName(username)
+                        StorageUtils.setLoginPassword(password)
+                        StorageUtils.setLoginStatus(true)
                         ToastUtils.showShort("注册成功，已为您跳转登录")
+                        dismiss()
                     }
                 } else {
                     ToastUtils.showShort(it.errorMsg)

@@ -6,10 +6,20 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="96pt"
+        android:layout_height="96pt"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_keyboard_arrow_left_black_48dp" />
+        android:layout_marginLeft="@dimen/margin_12pt"
+        android:padding="@dimen/margin_24pt"
+        android:src="@drawable/icon_back" />
+
+    <ImageView
+        android:id="@+id/iv_collect"
+        android:layout_width="96pt"
+        android:layout_height="96pt"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin_24pt" />
 
     <View
         android:layout_width="match_parent"

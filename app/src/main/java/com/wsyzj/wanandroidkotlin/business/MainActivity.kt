@@ -50,7 +50,7 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
     }
 
     override fun initView() {
-        navigation.visibility = View.GONE
+        baseNavigationView.visibility = View.GONE
         setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(
             this,

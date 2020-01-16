@@ -54,13 +54,6 @@ class HomeFragment : BaseFragment() {
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 getBannerList()
                 getHomeList(true)
-
-                var loginDialog = LoginDialog(context!!)
-                XPopup
-                    .Builder(activity)
-                    .popupAnimation(PopupAnimation.TranslateAlphaFromTop)
-                    .asCustom(loginDialog)
-                    .show()
             }
 
             override fun onLoadMore(refreshLayout: RefreshLayout) {
@@ -90,7 +83,7 @@ class HomeFragment : BaseFragment() {
                 banner.setImageLoader(GlideImageLoader())
                     .setImages(getBannerPahts(list))
                     .setOnBannerListener {
-                        IntentManager.webview(activity, list[it].url)
+                        IntentManager.webview(activity, list[it].url, list[it].id)
                     }
                     .start()
 
@@ -159,7 +152,11 @@ class HomeFragment : BaseFragment() {
         }
 
         homeAdapter?.setOnItemClickListener { adapter, view, position ->
-            IntentManager.webview(activity, articles?.get(position)?.link)
+            IntentManager.webview(
+                activity,
+                articles?.get(position)?.link,
+                articles?.get(position)?.id
+            )
         }
     }
 }
