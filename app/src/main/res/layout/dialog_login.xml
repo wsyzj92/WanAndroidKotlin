@@ -47,8 +47,8 @@
                         android:hint="用户名"
                         android:maxLength="20"
                         android:singleLine="true"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textColorHint="@color/colorSecondaryText"
+                        android:textColor="@color/textColorPrimary"
+                        android:textColorHint="@color/textColorSecond"
                         android:textCursorDrawable="@drawable/shape_text_cursor_drawable"
                         android:textSize="@dimen/textSize_16sp" />
 
@@ -88,8 +88,8 @@
                         android:inputType="textPassword"
                         android:maxLength="20"
                         android:singleLine="true"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textColorHint="@color/colorSecondaryText"
+                        android:textColor="@color/textColorPrimary"
+                        android:textColorHint="@color/textColorSecond"
                         android:textCursorDrawable="@drawable/shape_text_cursor_drawable"
                         android:textSize="@dimen/textSize_16sp" />
 
@@ -132,8 +132,8 @@
                         android:inputType="textPassword"
                         android:maxLength="20"
                         android:singleLine="true"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textColorHint="@color/colorSecondaryText"
+                        android:textColor="@color/textColorPrimary"
+                        android:textColorHint="@color/textColorSecond"
                         android:textCursorDrawable="@drawable/shape_text_cursor_drawable"
                         android:textSize="@dimen/textSize_16sp" />
 

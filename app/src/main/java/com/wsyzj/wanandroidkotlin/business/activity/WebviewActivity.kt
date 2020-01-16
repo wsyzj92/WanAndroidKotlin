@@ -1,9 +1,8 @@
 package com.wsyzj.wanandroidkotlin.business.activity
 
-import android.view.KeyEvent
 import android.view.View
 import com.wsyzj.wanandroidkotlin.R
-import com.wsyzj.wanandroidkotlin.business.widget.BaseWebView
+import com.wsyzj.wanandroidkotlin.common.widget.BaseWebView
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
@@ -15,7 +14,6 @@ import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
 import com.wsyzj.wanandroidkotlin.business.utils.StorageUtils
 import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import com.wsyzj.wanandroidkotlin.common.http.BaseRequest
-import com.wsyzj.wanandroidkotlin.common.http.BaseRetrofit
 import com.wsyzj.wanandroidkotlin.common.http.BaseSchedulers
 
 /**

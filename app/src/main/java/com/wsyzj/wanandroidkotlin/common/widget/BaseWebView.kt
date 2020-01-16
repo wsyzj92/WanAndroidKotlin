@@ -1,4 +1,4 @@
-package com.wsyzj.wanandroidkotlin.business.widget
+package com.wsyzj.wanandroidkotlin.common.widget
 
 import android.annotation.SuppressLint
 import android.content.Context

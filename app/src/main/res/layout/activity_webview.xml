@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.wsyzj.wanandroidkotlin.business.widget.BaseWebView
+    <com.wsyzj.wanandroidkotlin.common.widget.BaseWebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

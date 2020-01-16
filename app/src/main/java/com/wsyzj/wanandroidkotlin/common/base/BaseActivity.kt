@@ -9,16 +9,13 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.ButterKnife
 import com.blankj.utilcode.util.AdaptScreenUtils
-import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.wsyzj.wanandroidkotlin.business.widget.BaseNavigationView
+import com.wsyzj.wanandroidkotlin.common.widget.BaseNavigationView
 import com.wsyzj.wanandroidkotlin.common.http.BaseRetrofit
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
-import com.wsyzj.wanandroidkotlin.common.mvp.BaseIPresenter
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 import com.wsyzj.wanandroidkotlin.common.utils.EventBusUtils
-import com.wsyzj.wanandroidkotlin.common.utils.IContextCompat
 import io.reactivex.disposables.Disposable
 
 /**
