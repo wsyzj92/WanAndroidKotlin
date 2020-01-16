@@ -126,22 +126,23 @@ class HomeFragment : BaseFragment() {
         }
 
         val subscribe =
-            BaseRequest.instance.service.getHomeList(pageNumber).compose(BaseSchedulers.io_main()).subscribe() {
-                if (it.errorCode == Constant.HTTP_CODE) {
-                    it.let {
-                        var list = it.data?.datas!!
-                        if (articles == null || refreshing) {
-                            articles = list
-                        } else {
-                            articles?.addAll(list)
+            BaseRequest.instance.service.getHomeList(pageNumber).compose(BaseSchedulers.io_main())
+                .subscribe() {
+                    if (it.errorCode == Constant.HTTP_CODE) {
+                        it.let {
+                            var list = it.data?.datas!!
+                            if (articles == null || refreshing) {
+                                articles = list
+                            } else {
+                                articles?.addAll(list)
+                            }
+                            base_pull_refresh.finishRefresh()
+                            base_pull_refresh.finishLoadMore()
+                            base_pull_refresh.setNoMoreData(20 < list.size)
+                            setHomeList(articles!!)
                         }
-                        base_pull_refresh.finishRefresh()
-                        base_pull_refresh.finishLoadMore()
-                        base_pull_refresh.setNoMoreData(20 < list.size)
-                        setHomeList(articles!!)
                     }
                 }
-            }
         addDisposable(subscribe)
     }
 

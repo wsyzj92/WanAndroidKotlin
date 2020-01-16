@@ -2,6 +2,7 @@ package com.wsyzj.wanandroidkotlin.common.http
 
 import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,11 +26,15 @@ class BaseRequest {
     }
 
     init {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+
         val builder = OkHttpClient.Builder()
             .connectTimeout(12, TimeUnit.SECONDS)
             .connectTimeout(12, TimeUnit.SECONDS)
             .writeTimeout(12, TimeUnit.SECONDS)
             .readTimeout(12, TimeUnit.SECONDS)
+            .addInterceptor(interceptor)
 
         service = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())

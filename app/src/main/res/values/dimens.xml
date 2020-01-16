@@ -2,6 +2,8 @@
 
     <!-- 分割线的宽度 -->
     <dimen name="divider_1pt">1pt</dimen>
+
+    <dimen name="navigation_96pt">96pt</dimen>
     <dimen name="navigation_128pt">128pt</dimen>
 
     <dimen name="padding_12pt">12pt</dimen>

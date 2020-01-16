@@ -2,6 +2,7 @@ package com.wsyzj.wanandroidkotlin.common.http
 
 import com.wsyzj.wanandroidkotlin.business.bean.Article
 import com.wsyzj.wanandroidkotlin.business.bean.HomdeBanner
+import com.wsyzj.wanandroidkotlin.business.bean.Login
 import io.reactivex.Flowable
 import retrofit2.http.*
 
@@ -32,7 +33,12 @@ interface BaseRetrofitApi {
     /**
      * 登录
      */
-    @GET("user/login")
-    fun login(): Flowable<HomdeBanner>
+    @POST("user/login")
+    fun login(@Query("username") username: String, @Query("password") password: String): Flowable<BaseEntity<Login>>
 
+    /**
+     * 注册
+     */
+    @POST("user/register")
+    fun register(@Query("username") username: String, @Query("password") password: String, @Query("repassword") repassword: String): Flowable<BaseEntity<Login>>
 }
