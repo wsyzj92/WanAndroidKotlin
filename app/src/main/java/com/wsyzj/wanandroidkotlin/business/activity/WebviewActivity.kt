@@ -1,6 +1,9 @@
 package com.wsyzj.wanandroidkotlin.business.activity
 
 import android.view.View
+import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.common.widget.BaseWebView
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
@@ -16,6 +19,7 @@ import com.wsyzj.wanandroidkotlin.business.utils.StorageUtils
 import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import com.wsyzj.wanandroidkotlin.common.http.BaseRequest
 import com.wsyzj.wanandroidkotlin.common.http.BaseSchedulers
+import com.wsyzj.wanandroidkotlin.common.widget.StatusLayout
 
 /**
  * <pre>
@@ -44,7 +48,7 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
     }
 
     override fun initView() {
-
+        baseNavigationView.setShareImageResource(R.drawable.icon_share)
     }
 
     override fun initListener() {
@@ -68,6 +72,14 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
                     })
             } else {
                 IntentManager.login(this)
+            }
+        }
+
+        webview.webViewClient = object : WebViewClient() {
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                baseStatusLayout.setStatusLayout(StatusLayout.SUCCESS)
             }
         }
     }

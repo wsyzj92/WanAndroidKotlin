@@ -29,6 +29,9 @@ class BaseNavigationView : FrameLayout {
     @BindView(R.id.iv_collect)
     lateinit var iv_collect: ImageView
 
+    @BindView(R.id.iv_share)
+    lateinit var iv_share: ImageView
+
     var onBackClickListener: OnClickListener? = null
     var onCollectClickListener: OnClickListener? = null
 
@@ -63,8 +66,20 @@ class BaseNavigationView : FrameLayout {
         ButterKnife.bind(this)
     }
 
+    /**
+     * 分享 - 右边第一个
+     */
+    fun setShareImageResource(resId: Int) {
+        iv_share.setImageResource(resId)
+        iv_share.visibility = View.VISIBLE
+    }
+
+    /**
+     * 收藏 - 右边第二个
+     */
     fun setCollectImageResource(resId: Int) {
         iv_collect.setImageResource(resId)
+        iv_collect.visibility = View.VISIBLE
     }
 
     @OnClick(R.id.iv_back, R.id.iv_collect)

@@ -19,6 +19,14 @@
         android:layout_height="96pt"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/navigation_128pt" />
+
+    <ImageView
+        android:id="@+id/iv_share"
+        android:layout_width="96pt"
+        android:layout_height="96pt"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/margin_24pt" />
 
     <View
