@@ -30,8 +30,6 @@ class BaseRequest {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-        // 统一参数拦截器
-        val headerInterceptor = BaseHeaderInterceptor()
 
         val builder = OkHttpClient.Builder()
             .connectTimeout(12, TimeUnit.SECONDS)
@@ -39,7 +37,8 @@ class BaseRequest {
             .writeTimeout(12, TimeUnit.SECONDS)
             .readTimeout(12, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(headerInterceptor)
+            .addInterceptor(HeaderInterceptor())
+            .addInterceptor(SaveCookieInterceptor())
 
         service = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())

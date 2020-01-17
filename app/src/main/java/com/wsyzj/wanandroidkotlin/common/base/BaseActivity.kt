@@ -4,6 +4,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 import com.wsyzj.wanandroidkotlin.common.utils.EventBusUtils
+import com.wsyzj.wanandroidkotlin.common.widget.BaseStatusLayout
 import io.reactivex.disposables.Disposable
 
 /**
@@ -33,6 +35,7 @@ abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompa
     var presenter: P? = null
     var progressDialog: BaseProgressDialog? = null
     lateinit var baseNavigationView: BaseNavigationView
+    lateinit var baseStatusLayout: BaseStatusLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,12 +94,21 @@ abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompa
 
         // 标题栏
         baseNavigationView = BaseNavigationView(this)
-        baseNavigationView.layoutParams =
+        baseNavigationView?.layoutParams =
             LinearLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 AdaptScreenUtils.pt2Px(128F)
             )
         container.addView(baseNavigationView)
+
+        // 状态布局
+        baseStatusLayout = BaseStatusLayout(this)
+        baseStatusLayout?.layoutParams =
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+        container.addView(baseStatusLayout)
 
         // 真正显示的布局
         val content = View.inflate(this, layoutId(), null)

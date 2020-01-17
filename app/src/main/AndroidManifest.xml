@@ -25,7 +25,11 @@
             </intent-filter>
         </activity>
 
+        <!-- 网页显示 -->
         <activity android:name=".business.activity.WebviewActivity" />
+
+        <!-- 收藏 -->
+        <activity android:name=".business.activity.CollectActivity" />
 
     </application>
 

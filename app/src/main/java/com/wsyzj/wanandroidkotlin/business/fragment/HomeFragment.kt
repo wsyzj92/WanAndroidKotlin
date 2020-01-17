@@ -110,7 +110,6 @@ class HomeFragment : BaseFragment() {
      * 获取首页列表
      */
     @SuppressLint("CheckResult")
-
     fun getHomeList(refreshing: Boolean) {
         if (refreshing) {
             pageNumber = 0

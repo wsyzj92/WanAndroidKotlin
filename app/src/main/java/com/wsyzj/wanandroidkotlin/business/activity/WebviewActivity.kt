@@ -9,6 +9,7 @@ import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 
 import butterknife.BindView
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
 import com.wsyzj.wanandroidkotlin.business.utils.StorageUtils
@@ -43,7 +44,7 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
     }
 
     override fun initView() {
-        baseNavigationView.setCollectImageResource(R.drawable.icon_un_collect)
+
     }
 
     override fun initListener() {
@@ -59,7 +60,8 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
                     .compose(BaseSchedulers.io_main())
                     .subscribe({
                         if (it.errorCode == Constant.HTTP_CODE) {
-
+                            collect = !collect
+                            baseNavigationView.setCollectImageResource(if (collect) R.drawable.icon_collect else R.drawable.icon_un_collect)
                         } else {
                             ToastUtils.showShort(it.errorMsg)
                         }

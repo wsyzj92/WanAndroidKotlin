@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ProgressBar
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.blankj.utilcode.util.NetworkUtils
@@ -26,10 +27,10 @@ class BaseStatusLayout : FrameLayout {
     lateinit var pb_progress: ProgressBar
 
     @BindView(R.id.tv_error)
-    lateinit var tv_error: ProgressBar
+    lateinit var tv_error: TextView
 
     @BindView(R.id.tv_empty)
-    lateinit var tv_empty: ProgressBar
+    lateinit var tv_empty: TextView
 
     constructor(context: Context) : super(context) {
         initView()

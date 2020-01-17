@@ -20,6 +20,7 @@ import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 import com.wsyzj.wanandroidkotlin.common.utils.EventBusUtils
 import com.wsyzj.wanandroidkotlin.common.utils.IContextCompat
+import com.wsyzj.wanandroidkotlin.common.widget.BaseStatusLayout
 import io.reactivex.disposables.Disposable
 
 /**
@@ -36,6 +37,7 @@ abstract class BaseFragment : Fragment(), BaseIView {
     open var activity: Activity? = null
     //    var presenter: P? = null
     var progressDialog: BaseProgressDialog? = null
+    var baseStatusLayout: BaseStatusLayout? = null
 
     var isViewCreated: Boolean = false           // 控件是否初始化完成
     var isLoadDataCompleted: Boolean = false     // 数据是否已加载完毕
@@ -74,6 +76,16 @@ abstract class BaseFragment : Fragment(), BaseIView {
         container.layoutParams =
             FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
 
+        // 状态布局
+        baseStatusLayout = activity?.let { BaseStatusLayout(it) }
+        baseStatusLayout?.layoutParams =
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+        container.addView(baseStatusLayout)
+
+        // 内容布局
         val content = View.inflate(activity, layoutId(), null)
         content.layoutParams =
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)

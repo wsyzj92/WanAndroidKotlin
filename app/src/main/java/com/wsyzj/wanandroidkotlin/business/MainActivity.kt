@@ -15,10 +15,12 @@ import com.google.android.material.tabs.TabLayout
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.adapter.ViewPagerTabAdapter
 import com.wsyzj.wanandroidkotlin.business.fragment.HomeFragment
+import com.wsyzj.wanandroidkotlin.business.utils.StorageUtils
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
+import com.wsyzj.wanandroidkotlin.common.widget.StatusLayout
 
 /**
  * 主界面
@@ -51,6 +53,8 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
 
     override fun initView() {
         baseNavigationView.visibility = View.GONE
+        baseStatusLayout.setStatusLayout(StatusLayout.SUCCESS)
+
         setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(
             this,
@@ -112,14 +116,13 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         val id = p0.getItemId()
-        if (id == R.id.nav_gallery) {
+        when (id) {
+            R.id.nav_collect -> {
 
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_gallery) {
-
+            }
+            R.id.nav_exit -> {
+                StorageUtils.setLoginStatus(false)
+            }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true

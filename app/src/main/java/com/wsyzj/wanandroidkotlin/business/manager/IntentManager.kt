@@ -17,38 +17,42 @@ import com.wsyzj.wanandroidkotlin.business.dialog.LoginDialog
  *     version: 1.0
  * </pre>
  */
-class IntentManager {
+object IntentManager {
 
-    companion object {
+    private fun startActivity(activity: Activity?, clazz: Class<*>) {
+        activity?.startActivity(Intent(activity, clazz))
+    }
 
-        private fun startActivity(activity: Activity?, clazz: Class<*>) {
-            activity?.startActivity(Intent(activity, clazz))
-        }
+    private fun startActivity(activity: Activity?, intent: Intent) {
+        activity?.startActivity(intent)
+    }
 
-        private fun startActivity(activity: Activity?, intent: Intent) {
-            activity?.startActivity(intent)
-        }
+    /**
+     * 登录
+     */
+    fun login(context: Context?) {
+        var loginDialog = LoginDialog(context!!)
+        XPopup
+            .Builder(context)
+            .popupAnimation(PopupAnimation.TranslateAlphaFromTop)
+            .asCustom(loginDialog)
+            .show()
+    }
 
-        /**
-         * 登录
-         */
-        fun login(context: Context?) {
-            var loginDialog = LoginDialog(context!!)
-            XPopup
-                .Builder(context)
-                .popupAnimation(PopupAnimation.TranslateAlphaFromTop)
-                .asCustom(loginDialog)
-                .show()
-        }
+    /**
+     * 到网页显示的界面
+     */
+    fun webview(activity: Activity?, url: String?, id: Int?) {
+        var intent = Intent(activity, WebviewActivity::class.java)
+        intent.putExtra("url", url)
+        intent.putExtra("id", id)
+        startActivity(activity, intent)
+    }
 
-        /**
-         * 到网页显示的界面
-         */
-        fun webview(activity: Activity?, url: String?, id: Int?) {
-            var intent = Intent(activity, WebviewActivity::class.java)
-            intent.putExtra("url", url)
-            intent.putExtra("id", id)
-            startActivity(activity, intent)
-        }
+    /**
+     * 收藏
+     */
+    fun collect(activity: Activity?) {
+
     }
 }
