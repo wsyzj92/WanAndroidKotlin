@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.wsyzj.wanandroidkotlin"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -61,7 +61,7 @@ dependencies {
 
     // 第三方（纯UI）
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
-    implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'com.github.zhpanvip:BannerViewPager:2.6.5'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.lxj:xpopup:1.8.10'
 }

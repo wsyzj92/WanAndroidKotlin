@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
+import com.wsyzj.wanandroidkotlin.business.activity.CollectActivity
 import com.wsyzj.wanandroidkotlin.business.activity.WebviewActivity
 import com.wsyzj.wanandroidkotlin.business.dialog.LoginDialog
 
@@ -53,6 +54,6 @@ object IntentManager {
      * 收藏
      */
     fun collect(activity: Activity?) {
-
+        startActivity(activity, CollectActivity::class.java)
     }
 }

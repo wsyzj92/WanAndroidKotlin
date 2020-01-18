@@ -1,27 +1,26 @@
 package com.wsyzj.wanandroidkotlin.business.fragment
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.BindView
-import com.lxj.xpopup.XPopup
-import com.lxj.xpopup.enums.PopupAnimation
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.adapter.HomeAdapter
+import com.wsyzj.wanandroidkotlin.business.adapter.HomeBannerAdapter
 import com.wsyzj.wanandroidkotlin.business.bean.DataBanner
 import com.wsyzj.wanandroidkotlin.business.bean.DataX
-import com.wsyzj.wanandroidkotlin.business.dialog.LoginDialog
 import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
-import com.wsyzj.wanandroidkotlin.business.widget.GlideImageLoader
 import com.wsyzj.wanandroidkotlin.common.base.BaseFragment
 import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import com.wsyzj.wanandroidkotlin.common.http.BaseRequest
 import com.wsyzj.wanandroidkotlin.common.http.BaseSchedulers
 import com.wsyzj.wanandroidkotlin.common.utils.IContextCompat
 import com.wsyzj.wanandroidkotlin.common.widget.BasePullToRefreshView
-import com.youth.banner.Banner
+import com.zhpan.bannerview.BannerViewPager
+import com.zhpan.bannerview.constants.IndicatorGravity
+import com.zhpan.bannerview.constants.IndicatorSlideMode
+import com.zhpan.bannerview.constants.PageStyle
 
 /**
  * <pre>
@@ -78,32 +77,26 @@ class HomeFragment : BaseFragment() {
                 var list = it.data
 
                 val headerView = IContextCompat.inflate(R.layout.recycler_header_home_banner)
-                var banner = headerView.findViewById<Banner>(R.id.banner)
+                var banner_view =
+                    headerView.findViewById<BannerViewPager<DataBanner, HomeBannerAdapter>>(R.id.banner_view)
 
-                banner.setImageLoader(GlideImageLoader())
-                    .setImages(getBannerPahts(list))
-                    .setOnBannerListener {
+                banner_view.setCanLoop(false)
+                    .setIndicatorSlideMode(IndicatorSlideMode.NORMAL)
+                    .setIndicatorGravity(IndicatorGravity.CENTER)
+                    .setHolderCreator { HomeBannerAdapter() }
+                    .setPageStyle(PageStyle.MULTI_PAGE_OVERLAP)
+                    .setPageMargin(getResources().getDimensionPixelOffset(R.dimen.margin_48pt))
+                    .setAutoPlay(true)
+                    .setOnPageClickListener {
                         IntentManager.webview(activity, list[it].url, list[it].id)
                     }
-                    .start()
+                    .create(list)
 
                 if (base_pull_refresh.getHeaderLayoutCount() == 0) {
                     base_pull_refresh.addHeaderView(headerView)
                 }
             }
         }
-    }
-
-    fun getBannerPahts(list: MutableList<DataBanner>): List<String> {
-        if (list.size == 0) {
-            return listOf()
-        }
-        var paths = mutableListOf<String>()
-
-        for (dataBanner in list) {
-            paths.add(dataBanner.imagePath)
-        }
-        return paths
     }
 
     /**

@@ -10,6 +10,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
+import com.blankj.utilcode.util.CleanUtils
+import com.blankj.utilcode.util.FileUtils
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.wsyzj.wanandroidkotlin.R
@@ -120,11 +122,21 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
             R.id.nav_collect -> {
 
             }
+            R.id.nav_clear_cache -> {
+                clearCache()
+            }
             R.id.nav_exit -> {
                 StorageUtils.setLoginStatus(false)
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    /**
+     * 清理缓存
+     */
+    fun clearCache() {
+        CleanUtils.cleanExternalCache()
     }
 }
