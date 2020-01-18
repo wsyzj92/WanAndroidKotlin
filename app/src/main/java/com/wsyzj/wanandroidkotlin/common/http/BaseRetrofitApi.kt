@@ -29,7 +29,6 @@ interface BaseRetrofitApi {
     @GET("banner/json")
     fun getBannerList(): Flowable<HomdeBanner>
 
-
     /**
      * 登录
      */
