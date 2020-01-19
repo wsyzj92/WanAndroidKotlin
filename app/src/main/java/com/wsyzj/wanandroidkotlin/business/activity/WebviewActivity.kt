@@ -1,24 +1,22 @@
 package com.wsyzj.wanandroidkotlin.business.activity
 
 import android.view.View
-import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.wsyzj.wanandroidkotlin.R
-import com.wsyzj.wanandroidkotlin.common.widget.BaseWebView
-import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
-import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
-import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
-import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
-
 import butterknife.BindView
-import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.IntentUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
 import com.wsyzj.wanandroidkotlin.business.utils.StorageUtils
+import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
 import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import com.wsyzj.wanandroidkotlin.common.http.BaseRequest
 import com.wsyzj.wanandroidkotlin.common.http.BaseSchedulers
+import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
+import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
+import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
+import com.wsyzj.wanandroidkotlin.common.widget.BaseWebView
 import com.wsyzj.wanandroidkotlin.common.widget.StatusLayout
 
 /**
@@ -35,9 +33,9 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
     @BindView(R.id.webview)
     lateinit var webview: BaseWebView
 
-    var url: String = ""
-    var id: Int = -1
-    var collect: Boolean = false
+    var url = ""
+    var id = -1
+    var collect = false
 
     override fun presenter(): BasePresenter<BaseIView, BaseIModel>? {
         return null
@@ -52,9 +50,7 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
     }
 
     override fun initListener() {
-        /**
-         * 收藏
-         */
+        // 收藏
         baseNavigationView.onCollectClickListener = View.OnClickListener {
             if (StorageUtils.isLogin()) {
                 BaseRequest
@@ -73,6 +69,12 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
             } else {
                 IntentManager.login(this)
             }
+        }
+
+        // 分享
+        baseNavigationView.onShareClickListener = View.OnClickListener {
+            val shareTextIntent = IntentUtils.getShareTextIntent(url)
+            startActivity(shareTextIntent)
         }
 
         webview.webViewClient = object : WebViewClient() {

@@ -1,12 +1,12 @@
 package com.wsyzj.wanandroidkotlin.business.adapter
 
-import android.app.Activity
-import com.blankj.utilcode.util.ToastUtils
+import android.text.TextUtils
+import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.bean.DataX
-import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
+import com.wsyzj.wanandroidkotlin.common.http.ImageLoader
 
 /**
  * <pre>
@@ -17,12 +17,20 @@ import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
  *     version: 1.0
  * </pre>
  */
-class HomeAdapter(data: List<DataX>?) : BaseQuickAdapter<DataX, BaseViewHolder>(R.layout.item_home, data) {
+class HomeAdapter(data: List<DataX>) :
+    BaseQuickAdapter<DataX, BaseViewHolder>(R.layout.item_home, data) {
 
-    override fun convert(helper: BaseViewHolder, item: DataX?) {
-        helper.setText(R.id.tv_source, item?.chapterName)
-        helper.setText(R.id.tv_title, item?.title)
-        helper.setText(R.id.tv_author, "作者 : " + item?.author)
-        helper.setText(R.id.tv_data, "时间 : " + item?.niceDate)
+    override fun convert(helper: BaseViewHolder, item: DataX) {
+        helper.setText(R.id.tv_title, item.title)
+        helper.setText(R.id.tv_author, "作者 : " + item.author)
+        helper.setText(R.id.tv_data, "时间 : " + item.niceDate)
+
+        if (TextUtils.isEmpty(item.envelopePic)) {
+            helper.setText(R.id.tv_source, item.chapterName)
+            helper.setVisible(R.id.tv_source, true)
+        } else {
+            helper.setVisible(R.id.tv_source, false)
+            ImageLoader.with(mContext, item.envelopePic, helper.getView(R.id.iv_pic))
+        }
     }
 }

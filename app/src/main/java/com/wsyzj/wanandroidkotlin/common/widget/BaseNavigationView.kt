@@ -34,6 +34,7 @@ class BaseNavigationView : FrameLayout {
 
     var onBackClickListener: OnClickListener? = null
     var onCollectClickListener: OnClickListener? = null
+    var onShareClickListener: OnClickListener? = null
 
 
     fun setBackClickListener(listener: OnClickListener) {
@@ -42,6 +43,10 @@ class BaseNavigationView : FrameLayout {
 
     fun setCollectClickListener(listener: OnClickListener) {
         onCollectClickListener = listener
+    }
+
+    fun setShareClickListener(listener: OnClickListener) {
+        onShareClickListener = listener
     }
 
     constructor(context: Context) : super(context) {
@@ -82,7 +87,7 @@ class BaseNavigationView : FrameLayout {
         iv_collect.visibility = View.VISIBLE
     }
 
-    @OnClick(R.id.iv_back, R.id.iv_collect)
+    @OnClick(R.id.iv_back, R.id.iv_collect, R.id.iv_share)
     fun onClick(view: View) {
         when (view.id) {
             R.id.iv_back -> {
@@ -98,6 +103,12 @@ class BaseNavigationView : FrameLayout {
                 // 收藏
                 if (onCollectClickListener != null) {
                     onCollectClickListener?.onClick(view)
+                }
+            }
+            R.id.iv_share -> {
+                // 分享
+                if (onShareClickListener != null) {
+                    onShareClickListener?.onClick(view)
                 }
             }
         }

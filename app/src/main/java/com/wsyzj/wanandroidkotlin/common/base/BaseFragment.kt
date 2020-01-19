@@ -7,19 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.annotation.Nullable
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import butterknife.ButterKnife
 import com.blankj.utilcode.util.ToastUtils
-import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.common.http.BaseRetrofit
-import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
-import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 import com.wsyzj.wanandroidkotlin.common.utils.EventBusUtils
-import com.wsyzj.wanandroidkotlin.common.utils.IContextCompat
 import com.wsyzj.wanandroidkotlin.common.widget.BaseStatusLayout
 import io.reactivex.disposables.Disposable
 
@@ -69,12 +62,19 @@ abstract class BaseFragment : Fragment(), BaseIView {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         isViewCreated = true
 
         var container = FrameLayout(activity)
         container.layoutParams =
-            FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
 
         // 状态布局
         baseStatusLayout = activity?.let { BaseStatusLayout(it) }
@@ -88,7 +88,10 @@ abstract class BaseFragment : Fragment(), BaseIView {
         // 内容布局
         val content = View.inflate(activity, layoutId(), null)
         content.layoutParams =
-            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
         container.addView(content)
         ButterKnife.bind(this, content)
 
@@ -183,7 +186,8 @@ abstract class BaseFragment : Fragment(), BaseIView {
 
     abstract fun initView()
 
+    abstract fun initData()
+
     abstract fun initListener()
 
-    abstract fun initData()
 }

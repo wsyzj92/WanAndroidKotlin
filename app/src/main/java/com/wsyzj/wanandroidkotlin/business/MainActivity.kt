@@ -11,12 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
 import com.blankj.utilcode.util.CleanUtils
-import com.blankj.utilcode.util.FileUtils
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.adapter.ViewPagerTabAdapter
 import com.wsyzj.wanandroidkotlin.business.fragment.HomeFragment
+import com.wsyzj.wanandroidkotlin.business.fragment.ProjectFragment
 import com.wsyzj.wanandroidkotlin.business.utils.StorageUtils
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
@@ -106,11 +106,11 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
     private fun loadMainPage() {
         var fragments: ArrayList<Fragment> = arrayListOf()
         fragments.add(HomeFragment())
-        fragments.add(HomeFragment())
+        fragments.add(ProjectFragment())
 
         var tabs: ArrayList<String> = arrayListOf()
         tabs.add("首页")
-        tabs.add("推荐")
+        tabs.add("项目")
 
         view_pager.adapter = ViewPagerTabAdapter(supportFragmentManager, fragments, tabs)
         tab_layout.setupWithViewPager(view_pager)

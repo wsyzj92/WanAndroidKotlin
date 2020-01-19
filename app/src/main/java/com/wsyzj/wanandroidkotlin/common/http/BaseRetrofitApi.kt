@@ -4,7 +4,10 @@ import com.wsyzj.wanandroidkotlin.business.bean.Article
 import com.wsyzj.wanandroidkotlin.business.bean.HomdeBanner
 import com.wsyzj.wanandroidkotlin.business.bean.Login
 import io.reactivex.Flowable
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * <pre>
@@ -21,7 +24,7 @@ interface BaseRetrofitApi {
      * 首页列表
      */
     @GET("article/list/{pageNumber}/json")
-    fun getHomeList(@Path("pageNumber") int: Int): Flowable<BaseEntity<Article>>
+    fun getHomeList(@Path("pageNumber") pageNumber: Int): Flowable<BaseEntity<Article>>
 
     /**
      * 首页banner
@@ -46,4 +49,10 @@ interface BaseRetrofitApi {
      */
     @POST("lg/collect/{id}/json")
     fun collect(@Path("id") id: Int): Flowable<HomdeBanner>
+
+    /**
+     * 项目列表数据
+     */
+    @GET("project/list/{pageNumber}/json")
+    fun getProjectList(@Path("pageNumber") pageNumber: Int, @Query("cid") cid: Int): Flowable<BaseEntity<Article>>
 }
