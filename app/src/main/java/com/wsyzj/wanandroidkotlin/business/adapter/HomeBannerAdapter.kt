@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.ImageView
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.bean.DataBanner
-import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
 import com.wsyzj.wanandroidkotlin.common.http.ImageLoader
 import com.zhpan.bannerview.holder.ViewHolder
 
@@ -19,9 +18,7 @@ import com.zhpan.bannerview.holder.ViewHolder
  */
 class HomeBannerAdapter : ViewHolder<DataBanner> {
 
-    override fun getLayoutId(): Int {
-        return R.layout.item_home_banner
-    }
+    override fun getLayoutId() = R.layout.item_home_banner
 
     override fun onBind(itemView: View, data: DataBanner, position: Int, size: Int) {
         var iv_banner = itemView.findViewById<ImageView>(R.id.iv_banner)

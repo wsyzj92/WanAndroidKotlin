@@ -8,15 +8,17 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.SkinAppCompatDelegateImpl
 import butterknife.ButterKnife
 import com.blankj.utilcode.util.AdaptScreenUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.wsyzj.wanandroidkotlin.common.widget.BaseNavigationView
 import com.wsyzj.wanandroidkotlin.common.http.BaseRetrofit
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 import com.wsyzj.wanandroidkotlin.common.utils.EventBusUtils
+import com.wsyzj.wanandroidkotlin.common.widget.BaseNavigationView
 import com.wsyzj.wanandroidkotlin.common.widget.BaseStatusLayout
 import io.reactivex.disposables.Disposable
 
@@ -169,13 +171,23 @@ abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompa
         BaseRetrofit.add("$packageName.$localClassName", disposable)
     }
 
+    /**
+     * 屏幕适配
+     */
     override fun getResources(): Resources {
         return AdaptScreenUtils.adaptWidth(super.getResources(), 1080)
     }
 
-    abstract fun presenter(): P?
+    /**
+     * 换肤用到
+     */
+    override fun getDelegate(): AppCompatDelegate {
+        return SkinAppCompatDelegateImpl.get(this, this)
+    }
 
     abstract fun layoutId(): Int
+
+    abstract fun presenter(): P?
 
     abstract fun initView()
 

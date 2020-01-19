@@ -1,12 +1,10 @@
 package com.wsyzj.wanandroidkotlin.business.activity
 
-import butterknife.BindView
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
-import com.wsyzj.wanandroidkotlin.common.widget.BasePullToRefreshView
 
 /**
  * <pre>
@@ -19,13 +17,10 @@ import com.wsyzj.wanandroidkotlin.common.widget.BasePullToRefreshView
  */
 class CollectActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
 
+    override fun layoutId() = R.layout.activity_collect
 
     override fun presenter(): BasePresenter<BaseIView, BaseIModel>? {
         return null
-    }
-
-    override fun layoutId(): Int {
-        return R.layout.activity_collect
     }
 
     override fun initView() {

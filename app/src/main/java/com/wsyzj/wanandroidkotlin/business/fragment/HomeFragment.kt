@@ -40,9 +40,7 @@ class HomeFragment : BaseFragment() {
     var articles: MutableList<DataX> = mutableListOf()
     var homeAdapter: HomeAdapter? = null
 
-    override fun layoutId(): Int {
-        return R.layout.fragment_home
-    }
+    override fun layoutId() = R.layout.fragment_home
 
     override fun initView() {
 
@@ -116,10 +114,10 @@ class HomeFragment : BaseFragment() {
                     if (it.errorCode == Constant.HTTP_CODE) {
                         it.let {
                             var list = it.data?.datas!!
-                            if (articles == null || refreshing) {
+                            if (refreshing) {
                                 articles = list
                             } else {
-                                articles?.addAll(list)
+                                articles.addAll(list)
                             }
                             pull_to_refresh.finishRefresh()
                             pull_to_refresh.finishLoadMore()

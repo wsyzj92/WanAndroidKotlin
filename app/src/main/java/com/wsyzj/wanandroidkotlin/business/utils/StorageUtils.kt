@@ -2,7 +2,6 @@ package com.wsyzj.wanandroidkotlin.business.utils
 
 import android.text.TextUtils
 import com.blankj.utilcode.util.SPUtils
-import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -12,11 +11,9 @@ import org.json.JSONObject
 object StorageUtils {
 
     // 登录状态
-    val SP_LOGIN_STATUS = "sp_login_status"
+    private val SP_LOGIN_STATUS = "sp_login_status"
 
-    fun isLogin(): Boolean {
-        return SPUtils.getInstance().getBoolean(SP_LOGIN_STATUS)
-    }
+    fun isLogin(): Boolean = SPUtils.getInstance().getBoolean(SP_LOGIN_STATUS)
 
     fun setLoginStatus(isLogin: Boolean) {
         SPUtils.getInstance().put(SP_LOGIN_STATUS, isLogin)
@@ -24,8 +21,8 @@ object StorageUtils {
 
     // 用户名
     // 用户密码
-    val SP_LOGIN_USERNAME = "sp_login_username"
-    val SP_LOGIN_PASSWORD = "sp_login_password"
+    private val SP_LOGIN_USERNAME = "sp_login_username"
+    private val SP_LOGIN_PASSWORD = "sp_login_password"
 
     fun setLoginUserName(userName: String) {
         SPUtils.getInstance().put(SP_LOGIN_USERNAME, userName)
@@ -78,4 +75,13 @@ object StorageUtils {
         }
         return null
     }
+
+    // 夜间模式
+    private val SP_SKIN_NIGHT = "sp_skin_night"
+
+    fun setNightMode(nightMode: Boolean) {
+        SPUtils.getInstance().put(SP_SKIN_NIGHT, nightMode)
+    }
+
+    fun isNightMode(): Boolean = SPUtils.getInstance().getBoolean(SP_SKIN_NIGHT)
 }

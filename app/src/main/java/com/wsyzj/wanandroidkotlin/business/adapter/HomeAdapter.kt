@@ -1,7 +1,6 @@
 package com.wsyzj.wanandroidkotlin.business.adapter
 
 import android.text.TextUtils
-import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.wsyzj.wanandroidkotlin.R
@@ -17,8 +16,7 @@ import com.wsyzj.wanandroidkotlin.common.http.ImageLoader
  *     version: 1.0
  * </pre>
  */
-class HomeAdapter(data: List<DataX>) :
-    BaseQuickAdapter<DataX, BaseViewHolder>(R.layout.item_home, data) {
+class HomeAdapter(data: List<DataX>) : BaseQuickAdapter<DataX, BaseViewHolder>(R.layout.item_home, data) {
 
     override fun convert(helper: BaseViewHolder, item: DataX) {
         helper.setText(R.id.tv_title, item.title)

@@ -37,12 +37,10 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
     var id = -1
     var collect = false
 
+    override fun layoutId() = R.layout.activity_webview
+
     override fun presenter(): BasePresenter<BaseIView, BaseIModel>? {
         return null
-    }
-
-    override fun layoutId(): Int {
-        return R.layout.activity_webview
     }
 
     override fun initView() {

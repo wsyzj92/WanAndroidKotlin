@@ -180,9 +180,9 @@ abstract class BaseFragment : Fragment(), BaseIView {
         BaseRetrofit.add(javaClass.simpleName + javaClass.`package`, disposable)
     }
 
-//    abstract fun presenter(): Nullable?
-
     abstract fun layoutId(): Int
+
+//    abstract fun presenter(): Nullable?
 
     abstract fun initView()
 

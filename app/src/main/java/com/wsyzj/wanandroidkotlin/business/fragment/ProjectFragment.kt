@@ -33,9 +33,7 @@ class ProjectFragment : BaseFragment() {
     var projectList: MutableList<DataX>? = null
     var homeAdapter: HomeAdapter? = null
 
-    override fun layoutId(): Int {
-        return R.layout.fragment_project
-    }
+    override fun layoutId() = R.layout.fragment_project
 
     override fun initView() {
 

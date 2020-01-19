@@ -48,7 +48,6 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!-- 侧滑内容 -->
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"

@@ -12,13 +12,11 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.blankj.utilcode.util.ToastUtils
 import com.lxj.xpopup.core.CenterPopupView
-import com.lxj.xpopup.impl.PartShadowPopupView
 import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.utils.StorageUtils
 import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import com.wsyzj.wanandroidkotlin.common.http.BaseRequest
 import com.wsyzj.wanandroidkotlin.common.http.BaseSchedulers
-import kotlinx.android.synthetic.main.fragment_home.view.*
 
 /**
  * <pre>
@@ -56,9 +54,7 @@ class LoginDialog(context: Context) : CenterPopupView(context) {
         ButterKnife.bind(this)
     }
 
-    override fun getImplLayoutId(): Int {
-        return R.layout.dialog_login
-    }
+    override fun getImplLayoutId() = R.layout.dialog_login
 
     @OnClick(R.id.card_login_register, R.id.tv_login_register)
     fun onClick(view: View) {

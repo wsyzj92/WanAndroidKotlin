@@ -64,4 +64,6 @@ dependencies {
     implementation 'com.github.zhpanvip:BannerViewPager:2.6.5'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.lxj:xpopup:1.8.10'
+    implementation 'skin.support:skin-support:4.0.4'
+    implementation 'skin.support:skin-support-appcompat:4.0.4'
 }

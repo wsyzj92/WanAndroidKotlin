@@ -23,6 +23,7 @@ import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
 import com.wsyzj.wanandroidkotlin.common.widget.StatusLayout
+import skin.support.SkinCompatManager
 
 /**
  * 主界面
@@ -49,9 +50,7 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
         return null
     }
 
-    override fun layoutId(): Int {
-        return R.layout.activity_main
-    }
+    override fun layoutId() = R.layout.activity_main
 
     override fun initView() {
         baseNavigationView.visibility = View.GONE
@@ -120,12 +119,27 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
         val id = p0.getItemId()
         when (id) {
             R.id.nav_collect -> {
-
+                // 收藏
+            }
+            R.id.nav_day_night -> {
+                // 日间/夜间模式切换
+                val nightMode = StorageUtils.isNightMode()
+                if (nightMode) {
+                    p0.title = "日间模式"
+                    SkinCompatManager.getInstance().restoreDefaultTheme()
+                } else {
+                    p0.title = "夜间模式"
+                    SkinCompatManager.getInstance()
+                        .loadSkin("night", null, SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN)
+                }
+                StorageUtils.setNightMode(!nightMode)
             }
             R.id.nav_clear_cache -> {
+                // 清楚缓存
                 clearCache()
             }
             R.id.nav_exit -> {
+                // 退出登陆
                 StorageUtils.setLoginStatus(false)
             }
         }

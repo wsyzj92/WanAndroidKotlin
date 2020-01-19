@@ -16,13 +16,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 class ViewPagerTabAdapter(fm: FragmentManager, val fragments: ArrayList<Fragment>? = arrayListOf<Fragment>(), val titles: List<String>) :
     FragmentPagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment {
-        return fragments?.get(position)!!
-    }
+    override fun getItem(position: Int) = fragments?.get(position)!!
 
-    override fun getCount(): Int {
-        return fragments?.size ?: 0
-    }
+    override fun getCount() = fragments?.size ?: 0
 
     override fun getPageTitle(position: Int): CharSequence? {
         return titles[position]
