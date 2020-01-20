@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.widget.DialogTitle
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -25,6 +27,9 @@ class BaseNavigationView : FrameLayout {
 
     @BindView(R.id.iv_back)
     lateinit var iv_back: ImageView
+
+    @BindView(R.id.tv_title)
+    lateinit var tv_title: TextView
 
     @BindView(R.id.iv_collect)
     lateinit var iv_collect: ImageView
@@ -69,6 +74,13 @@ class BaseNavigationView : FrameLayout {
         val view = LayoutInflater.from(context)?.inflate(R.layout.widget_base_navigation, null)
         addView(view)
         ButterKnife.bind(this)
+    }
+
+    /**
+     * 设置标题
+     */
+    fun setTitle(title: String) {
+        tv_title.setText(title)
     }
 
     /**

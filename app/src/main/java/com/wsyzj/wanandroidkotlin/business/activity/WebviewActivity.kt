@@ -7,15 +7,18 @@ import butterknife.BindView
 import com.blankj.utilcode.util.IntentUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.wsyzj.wanandroidkotlin.R
+import com.wsyzj.wanandroidkotlin.business.constant.EventBusConstant
 import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
 import com.wsyzj.wanandroidkotlin.business.utils.StorageUtils
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
+import com.wsyzj.wanandroidkotlin.common.base.BaseEventBus
 import com.wsyzj.wanandroidkotlin.common.constant.Constant
 import com.wsyzj.wanandroidkotlin.common.http.BaseRequest
 import com.wsyzj.wanandroidkotlin.common.http.BaseSchedulers
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIView
 import com.wsyzj.wanandroidkotlin.common.mvp.BasePresenter
+import com.wsyzj.wanandroidkotlin.common.utils.EventBusUtils
 import com.wsyzj.wanandroidkotlin.common.widget.BaseWebView
 import com.wsyzj.wanandroidkotlin.common.widget.StatusLayout
 
@@ -63,6 +66,7 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
                         } else {
                             ToastUtils.showShort(it.errorMsg)
                         }
+                        EventBusUtils.post(BaseEventBus(EventBusConstant.EVENT_COLLECT))
                     })
             } else {
                 IntentManager.login(this)

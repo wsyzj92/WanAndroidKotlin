@@ -33,7 +33,7 @@ class ProjectFragment : BaseFragment() {
     var projectList: MutableList<DataX>? = null
     var homeAdapter: HomeAdapter? = null
 
-    override fun layoutId() = R.layout.fragment_project
+    override fun layoutId() = R.layout.layout_pull_to_refresh
 
     override fun initView() {
 
@@ -102,9 +102,10 @@ class ProjectFragment : BaseFragment() {
 
         homeAdapter?.setOnItemClickListener { adapter, view, position ->
             IntentManager.webview(
-                activity,
+                activity!!,
                 articles[position].link,
-                articles[position].id
+                articles[position].id,
+                articles[position].collect
             )
         }
     }

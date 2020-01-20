@@ -20,11 +20,11 @@ import com.wsyzj.wanandroidkotlin.business.dialog.LoginDialog
  */
 object IntentManager {
 
-    private fun startActivity(activity: Activity?, clazz: Class<*>) {
+    private fun startActivity(activity: Activity, clazz: Class<*>) {
         activity?.startActivity(Intent(activity, clazz))
     }
 
-    private fun startActivity(activity: Activity?, intent: Intent) {
+    private fun startActivity(activity: Activity, intent: Intent) {
         activity?.startActivity(intent)
     }
 
@@ -43,17 +43,18 @@ object IntentManager {
     /**
      * 到网页显示的界面
      */
-    fun webview(activity: Activity?, url: String?, id: Int?) {
+    fun webview(activity: Activity, url: String?, id: Int?, collect: Boolean) {
         var intent = Intent(activity, WebviewActivity::class.java)
         intent.putExtra("url", url)
         intent.putExtra("id", id)
+        intent.putExtra("collect", collect)
         startActivity(activity, intent)
     }
 
     /**
      * 收藏
      */
-    fun collect(activity: Activity?) {
+    fun collect(activity: Activity) {
         startActivity(activity, CollectActivity::class.java)
     }
 }

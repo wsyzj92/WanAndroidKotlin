@@ -16,7 +16,7 @@
     <!-- 分割线颜色 -->
     <color name="colorDivider">#f2f2f2</color>
     <!-- 背景颜色 -->
-    <color name="colorBackground">#f8f8f8</color>
+    <color name="colorBackground">#ffffffff</color>
     <!-- 遮罩颜色 -->
     <color name="colorShade">#54000000</color>
 

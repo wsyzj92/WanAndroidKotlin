@@ -55,4 +55,10 @@ interface BaseRetrofitApi {
      */
     @GET("project/list/{pageNumber}/json")
     fun getProjectList(@Path("pageNumber") pageNumber: Int, @Query("cid") cid: Int): Flowable<BaseEntity<Article>>
+
+    /**
+     * 收藏列表
+     */
+    @GET("lg/collect/list/{pageNumber}/json")
+    fun getCollectList(@Path("pageNumber") pageNumber: Int): Flowable<BaseEntity<Article>>
 }

@@ -17,6 +17,7 @@ import com.wsyzj.wanandroidkotlin.R
 import com.wsyzj.wanandroidkotlin.business.adapter.ViewPagerTabAdapter
 import com.wsyzj.wanandroidkotlin.business.fragment.HomeFragment
 import com.wsyzj.wanandroidkotlin.business.fragment.ProjectFragment
+import com.wsyzj.wanandroidkotlin.business.manager.IntentManager
 import com.wsyzj.wanandroidkotlin.business.utils.StorageUtils
 import com.wsyzj.wanandroidkotlin.common.base.BaseActivity
 import com.wsyzj.wanandroidkotlin.common.mvp.BaseIModel
@@ -120,6 +121,7 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
         when (id) {
             R.id.nav_collect -> {
                 // 收藏
+                IntentManager.collect(this)
             }
             R.id.nav_day_night -> {
                 // 日间/夜间模式切换
@@ -141,6 +143,7 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
             R.id.nav_exit -> {
                 // 退出登陆
                 StorageUtils.setLoginStatus(false)
+                StorageUtils.setCookies(null)
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)

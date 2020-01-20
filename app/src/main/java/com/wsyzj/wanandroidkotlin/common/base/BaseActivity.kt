@@ -21,6 +21,8 @@ import com.wsyzj.wanandroidkotlin.common.utils.EventBusUtils
 import com.wsyzj.wanandroidkotlin.common.widget.BaseNavigationView
 import com.wsyzj.wanandroidkotlin.common.widget.BaseStatusLayout
 import io.reactivex.disposables.Disposable
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * <pre>
@@ -141,6 +143,11 @@ abstract class BaseActivity<P : BasePresenter<BaseIView, BaseIModel>> : AppCompa
 
     override fun showToast(message: String) {
         ToastUtils.showShort(message)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    open fun receiveEvent(event: BaseEventBus) {
+
     }
 
     /**

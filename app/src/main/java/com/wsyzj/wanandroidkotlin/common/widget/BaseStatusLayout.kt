@@ -67,7 +67,7 @@ class BaseStatusLayout : FrameLayout {
     }
 
     /**
-     *
+     * 根据状态来显示
      */
     fun setStatusLayout(statusLayout: StatusLayout) {
         when (statusLayout) {
@@ -118,4 +118,22 @@ class BaseStatusLayout : FrameLayout {
         visibility = View.GONE
     }
 
+
+    /**
+     * 根据集合来判断界面加载的状态
+     *
+     * @param throwable
+     * @param list
+     */
+    fun setStatusLayout(throwable: Throwable?, list: List<*>?) {
+        if (list == null && !NetworkUtils.isConnected()) {
+            showError()
+        } else if (list == null && throwable != null) {
+            showError()
+        } else if (list == null) {
+            showEmpty()
+        } else {
+            showSuccess()
+        }
+    }
 }

@@ -40,7 +40,7 @@ class HomeFragment : BaseFragment() {
     var articles: MutableList<DataX> = mutableListOf()
     var homeAdapter: HomeAdapter? = null
 
-    override fun layoutId() = R.layout.fragment_home
+    override fun layoutId() = R.layout.layout_pull_to_refresh
 
     override fun initView() {
 
@@ -86,7 +86,7 @@ class HomeFragment : BaseFragment() {
                     .setPageMargin(getResources().getDimensionPixelOffset(R.dimen.margin_48pt))
                     .setAutoPlay(true)
                     .setOnPageClickListener {
-                        IntentManager.webview(activity, list[it].url, list[it].id)
+                        IntentManager.webview(activity!!, list[it].url, list[it].id, false)
                     }
                     .create(list)
 
@@ -143,9 +143,10 @@ class HomeFragment : BaseFragment() {
 
         homeAdapter?.setOnItemClickListener { adapter, view, position ->
             IntentManager.webview(
-                activity,
+                activity!!,
                 articles[position].link,
-                articles[position].id
+                articles[position].id,
+                articles[position].collect
             )
         }
     }
