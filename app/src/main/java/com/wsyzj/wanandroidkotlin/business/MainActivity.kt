@@ -54,6 +54,7 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
     override fun layoutId() = R.layout.activity_main
 
     override fun initView() {
+
         baseNavigationView.visibility = View.GONE
         baseStatusLayout.setStatusLayout(StatusLayout.SUCCESS)
 
