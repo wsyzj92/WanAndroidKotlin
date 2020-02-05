@@ -48,7 +48,6 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
     lateinit var navigation_view: NavigationView
 
     override fun presenter(): BasePresenter<BaseIView, BaseIModel>? {
-
         return null
     }
 
