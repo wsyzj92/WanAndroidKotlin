@@ -92,6 +92,7 @@ class WebviewActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>() {
         getIntentExtras()
     }
 
+
     private fun getIntentExtras() {
         if (intent != null) {
 
