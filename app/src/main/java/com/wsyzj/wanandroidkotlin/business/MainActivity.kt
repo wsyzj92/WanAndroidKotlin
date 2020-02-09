@@ -154,6 +154,7 @@ class MainActivity : BaseActivity<BasePresenter<BaseIView, BaseIModel>>(),
      * 清理缓存
      */
     fun clearCache() {
+
         CleanUtils.cleanExternalCache()
     }
 }
